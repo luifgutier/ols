@@ -69,7 +69,7 @@ fieldset{padding:0;margin:0
 none;background-color:transparent}form#global-search
 label{display:inline;margin-right:0;float:left;margin-top:0.1em}form#global-search input#global-searchbox{font-size:100%;margin:0
 0.3em;width:140px}form#global-search
-input.submit{padding:0.25em;width:24px;height:24px;margin:0;display:inline;background:url(/web_guidelines/images/global/search-button.png) no-repeat;background-position:0 0;width:24px;height:24px;-moz-box-shadow:0 0 0 transparent;-webkit-box-shadow:0 0 0 transparent;box-shadow:0 0 0 transparent;border:0
+input.submit{padding:0.25em;width:24px;height:24px;margin:0;display:inline;background:url(web_guidelines/images/global/search-button.png) no-repeat;background-position:0 0;width:24px;height:24px;-moz-box-shadow:0 0 0 transparent;-webkit-box-shadow:0 0 0 transparent;box-shadow:0 0 0 transparent;border:0
 none;filter:none;float:left}form#global-search input.submit:hover,
 form#global-search input.submit:focus,
 form#global-search input.submit:active{background-position:-24px 0;width:24px;height:24px}div#local-masthead{border-bottom:3px solid #eee}div#skip-to,

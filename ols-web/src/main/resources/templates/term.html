@@ -31,17 +31,21 @@
     <link rel="stylesheet" href="../static/js/jstree/themes/proton/style.min.css" th:href="@{../../js/jstree/themes/proton/style.min.css}" type="text/css" media="screen" />
 
     <!-- CSS: implied media=all -->
-    <!-- CSS concatenated and minified via ant build script-->
+    <!-- CSS concatenated and minified via ant build script
     <link rel="stylesheet" href="//www.ebi.ac.uk/web_guidelines/css/compliance/develop/boilerplate-style.css"/>
     <link rel="stylesheet" href="//www.ebi.ac.uk/web_guidelines/css/compliance/develop/ebi-global.css" type="text/css" media="screen"/>
     <link rel="stylesheet" href="//www.ebi.ac.uk/web_guidelines/css/compliance/develop/ebi-visual.css" type="text/css" media="screen"/>
     <link rel="stylesheet" href="//www.ebi.ac.uk/web_guidelines/css/compliance/develop/984-24-col-fluid.css" type="text/css" media="screen"/>
-
+    -->
+    <link rel="stylesheet" href="../static/ebi/css/boilerplate-style.css" th:href="@{../../ebi/css/boilerplate-style.css}" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="../static/ebi/css/ebi-global.css" th:href="@{../../ebi/css/ebi-global.css}" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="../static/ebi/css/ebi-visual.css" th:href="@{../../ebi/css/ebi-visual.css}" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="../static/ebi/css/ebi/984-24-col-fluid.css" th:href="@{../../ebi/css/984-24-col-fluid.css}" type="text/css" media="screen"/>-- you can replace this with [projectname]-colours.css. See http://frontier.ebi.ac.uk/web/style/colour for details of how to do this -->
+    
     <!-- you can replace this with [projectname]-colours.css. See http://frontier.ebi.ac.uk/web/style/colour for details of how to do this -->
     <!-- also inform ES so we can host your colour palette file -->
-    <link rel="stylesheet" href="//www.ebi.ac.uk/web_guidelines/css/compliance/develop/embl-petrol-colours.css" type="text/css" media="screen"/>
-
-
+    <link rel="stylesheet" href="../static/ebi/css/embl-petrol-colours.css" th:href="@{../../ebi/css/embl-petrol-colours.css}" type="text/css" media="screen"/>
+    
     <link rel="stylesheet" href="../static/css/ols-colors.css" th:href="@{../../css/ols-colors.css}" type="text/css" media="screen"/>
     <link rel="stylesheet" href="../static/css/ols.css" th:href="@{../../css/ols.css}" type="text/css" media="screen"/>
 
@@ -50,7 +54,7 @@
     <link rel="stylesheet" href="../static/css/typeahead/typeaheadjs.css" th:href="@{../../css/typeahead/typeaheadjs.css}" type="text/css" media="screen"/>
 
     <!-- Css lionk for dataTable -->
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css"/>
+    <link rel="stylesheet" href="../static/ebi/css/jquery.dataTables.min.css" th:href="@{../../ebi/css/jquery.dataTables.min.css}"/>
 
     <!-- for production the above can be replaced with -->
     <!--
@@ -82,12 +86,34 @@
     <!-- <script src="//www.ebi.ac.uk/web_guidelines/js/libs/modernizr.minified.2.1.6.js"></script> -->
 
     <!-- custom build (lacks most of the "advanced" HTML5 support -->
-    <script src="//www.ebi.ac.uk/web_guidelines/js/libs/modernizr.custom.49274.js"></script>
+    <script src="../static/ebi/js/modernizr.custom.49274.js" th:src="@{../../ebi/js/modernizr.custom.49274.js}"></script>
 
 </head>
 
 <body class="level2">
+<script>
+    function getBaseURL() {
+    var url = location.href;  // entire url including querystring - also: window.location.href;
+    var baseURL = url.substring(0, url.indexOf('/', 14));
 
+
+    if (baseURL.indexOf('http://localhost') != -1) {
+        // Base Url for localhost
+        var url = location.href;  // window.location.href;
+        var pathname = location.pathname;  // window.location.pathname;
+        var index1 = url.indexOf(pathname);
+        var index2 = url.indexOf("/", index1 + 1);
+        var baseLocalUrl = url.substr(0, index2);
+
+        return baseLocalUrl + "/";
+    }
+    else {
+        // Root Url for domain name
+        return baseURL + "/";
+    }
+
+}
+</script>
 <div id="skip-to">
     <ul>
         <li><a href="#content">Skip to main content</a></li>
@@ -104,7 +130,7 @@
         <div id="global-masthead" class="masthead grid_24">
 
             <!--This has to be one line and no newline characters-->
-            <a href="//www.ebi.ac.uk/" title="Go to the EMBL-EBI homepage"><img src="//www.ebi.ac.uk/web_guidelines/images/logos/EMBL-EBI/EMBL_EBI_Logo_white.png" alt="EMBL European Bioinformatics Institute"/></a>
+            <a href="//www.ebi.ac.uk/" title="Go to the EMBL-EBI homepage"><img src="../static/ebi/image/EMBL_EBI_Logo_white.png" th:src="@{../../ebi/image/EMBL_EBI_Logo_white.png}" alt="EMBL European Bioinformatics Institute"/></a>
 
             <nav>
                 <ul id="global-nav">
@@ -588,21 +614,25 @@
     });
 </script>
 
+<!--
 <script defer="defer" src="//www.ebi.ac.uk/web_guidelines/js/cookiebanner.js"></script>
 <script defer="defer" src="//www.ebi.ac.uk/web_guidelines/js/foot.js"></script>
+-->
+<script  src="../static/ebi/js/cookiebanner.js" th:src="@{../../ebi/js/cookiebanner.js}"></script>
+<script  src="../static/ebi/js/foot.js" th:src="@{../../ebi/js/foot.js}"></script>
 
 <!-- Start Diachron include scripts-->
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/highcharts-more.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-<script src="https://code.highcharts.com/modules/no-data-to-display.js"></script>
+<script src="../static/ebi/js/highcharts.js" th:src="@{../../ebi/js/highcharts.js}"></script>
+<script src="../static/ebi/js/highcharts-more.js" th:src="@{../../ebi/js/highcharts-more.js}"></script>
+<script src="../static/ebi/js/exporting.js" th:src="@{../../ebi/js/exporting.js}"></script>
+<script src="../static/ebi/js/no-data-to-display.js" th:src="@{../../ebi/js/no-data-to-display.js}"></script>
 <script src="../../static/js/diachron/underscore-min.js" th:src="@{../../js/diachron/underscore-min.js}"></script>
 <script src="../../static/js/diachron/changes.js" th:src="@{../../js/diachron/changes.js}"></script>
 <script src="../../static/js/diachron/moment.js" th:src="@{../../js/diachron/moment.js}"></script>
 
 <!--<script src="../../static/js/diachron/tablesorter.min.js" th:src="@{../../js/diachron/tablesorter.min.js}"></script>-->
 
-<script src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+<script  src="../static/ebi/js/jquery.dataTables.min.js" th:src="@{../../ebi/js/jquery.dataTables.min.js}"></script>
 
 <!-- END Diachron scripts-->
 
