@@ -1,0 +1,123 @@
+"@context":
+
+
+
+ontologies:
+
+
+## EDAM
+
+
+  - id: edam
+    preferredPrefix: EDAM
+    title: EDAM bioinformatics ontology
+    uri: http://edamontology.org
+    description: EDAM is a simple ontology of well established, familiar concepts that are prevalent within bioinformatics, including types of data and data identifiers, data formats, operations and topics. EDAM provides a set of terms with synonyms and definitions - organised into an intuitive hierarchy for convenient use.
+    homepage: http://edamontology.org
+    mailing_list: edam@elixir-dk.org
+    definition_property:
+      - http://www.geneontology.org/formats/oboInOwl#hasDefinition
+    synonym_property:
+      - http://www.geneontology.org/formats/oboInOwl#hasExactSynonym
+    base_uri:
+      - http://edamontology.org/data_
+      - http://edamontology.org/identifier_
+      - http://edamontology.org/topic_
+      - http://edamontology.org/format_
+    oboSlims: false
+    ontology_purl: http://edamontology.org/EDAM.owl
+
+
+## TEST3
+
+
+  - id: test3
+    preferredPrefix: TEST3
+    title: Test Ontology
+    uri: http://www.ebi.ac.uk/efo
+    description: Test Ontology
+    reasoner: OWL2
+    oboSlims: false
+    ontology_purl: http://www.contactomovil.com.co/ontologias/musica_zonadetrabajo.owl
+
+
+## TEST4
+
+
+  - id: test4
+    preferredPrefix: TEST4
+    title: Test Ontology
+    uri: http://www.ebi.ac.uk/efo
+    description: Test Ontology
+    reasoner: OWL2
+    oboSlims: false
+    ontology_purl: http://www.contactomovil.com.co/ontologias/musica_zonadetrabajo.owl
+
+
+
+
+
+
+## TEST
+
+  - id: vida
+    preferredPrefix: vida
+    title: vida saludable
+    uri: http://www.ebi.ac.uk/efo
+    description: "Test Ontology"
+    reasoner: OWL2
+    oboSlims: false
+    ontology_purl : http://www.contactomovil.com.co/ontologias/vidasaludable_zonadetrabajo.owl
+
+
+
+
+
+
+
+## TEST
+
+  - id: test7
+    preferredPrefix: TEST7
+    title: Test Ontology
+    uri: http://www.ebi.ac.uk/efo
+    description: "Test Ontology"
+    reasoner: OWL2
+    oboSlims: false
+    ontology_purl : http://www.contactomovil.com.co/ontologias/musica_zonadetrabajo.owl
+
+
+
+
+
+
+## TEST
+
+  - id: test9
+    preferredPrefix: TEST9
+    title: Test Ontology
+    uri: http://www.ebi.ac.uk/efo
+    description: "Test Ontology"
+    reasoner: OWL2
+    oboSlims: false
+    ontology_purl : http://www.contactomovil.com.co/ontologias/musica_zonadetrabajo.owl
+
+
+
+
+
+
+## TEST
+
+  - id: test10
+    preferredPrefix: TEST10
+    title: Test Ontology
+    uri: http://www.ebi.ac.uk/efo
+    description: "Test Ontology"
+    reasoner: OWL2
+    oboSlims: false
+    ontology_purl : http://www.contactomovil.com.co/ontologias/musica_zonadetrabajo.owl
+
+
+
+

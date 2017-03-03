@@ -1,0 +1,1012 @@
+[source,http]
+----
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 41742
+
+{
+  "_embedded" : {
+    "ontologies" : [ {
+      "ontologyId" : "vto",
+      "loaded" : null,
+      "updated" : "2016-01-19T11:34:58.247+0000",
+      "status" : "TOLOAD",
+      "message" : "No ontology loaded",
+      "version" : null,
+      "numberOfTerms" : 0,
+      "numberOfProperties" : 0,
+      "numberOfIndividuals" : 0,
+      "config" : {
+        "id" : "http://purl.obolibrary.org/obo/vto.owl",
+        "versionIri" : null,
+        "title" : "Vertebrate Taxonomy Ontology",
+        "namespace" : "vto",
+        "preferredPrefix" : "VTO",
+        "description" : "Comprehensive hierarchy of extinct and extant vertebrate taxa.",
+        "homepage" : null,
+        "version" : null,
+        "mailingList" : null,
+        "creators" : [ ],
+        "annotations" : { },
+        "fileLocation" : "http://purl.obolibrary.org/obo/vto.owl",
+        "reasonerType" : "EL",
+        "oboSlims" : true,
+        "labelProperty" : "http://www.w3.org/2000/01/rdf-schema#label",
+        "definitionProperties" : [ "http://purl.obolibrary.org/obo/IAO_0000115" ],
+        "synonymProperties" : [ "http://www.geneontology.org/formats/oboInOwl#hasExactSynonym" ],
+        "hierarchicalProperties" : [ "http://purl.obolibrary.org/obo/BFO_0000050" ],
+        "baseUris" : [ "http://purl.obolibrary.org/obo/VTO_" ],
+        "hiddenProperties" : [ ],
+        "internalMetadataProperties" : [ ],
+        "skos" : false
+      },
+      "_links" : {
+        "self" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/vto"
+        },
+        "terms" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/vto/terms"
+        },
+        "properties" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/vto/properties"
+        },
+        "individuals" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/vto/individuals"
+        }
+      }
+    }, {
+      "ontologyId" : "ordo",
+      "loaded" : null,
+      "updated" : "2016-01-19T11:34:57.351+0000",
+      "status" : "TOLOAD",
+      "message" : "No ontology loaded",
+      "version" : null,
+      "numberOfTerms" : 0,
+      "numberOfProperties" : 0,
+      "numberOfIndividuals" : 0,
+      "config" : {
+        "id" : "http://www.orpha.net/ontology/orphanet.owl",
+        "versionIri" : null,
+        "title" : "Orphanet Rare Disease Ontolog",
+        "namespace" : "ordo",
+        "preferredPrefix" : "ORDO",
+        "description" : "The Orphanet Rare Disease ontology (ORDO) is jointly developed by Orphanet and the EBI to provide a structured vocabulary for rare diseases capturing relationships between diseases, genes and other relevant features which will form a useful resource for the computational analysis of rare diseases. It derived from the Orphanet database (www.orpha.net ) , a multilingual database dedicated to rare diseases populated from literature and validated by international experts. It integrates a nosology (classification of rare diseases), relationships (gene-disease relations, epiemological data) and connections with other terminologies (MeSH, UMLS, MedDRA),databases (OMIM, UniProtKB, HGNC, ensembl, Reactome, IUPHAR, Geantlas) or classifications (ICD10).",
+        "homepage" : null,
+        "version" : null,
+        "mailingList" : null,
+        "creators" : [ ],
+        "annotations" : { },
+        "fileLocation" : "http://www.orphadata.org/data/ORDO/ordo_orphanet.owl",
+        "reasonerType" : "OWL2",
+        "oboSlims" : false,
+        "labelProperty" : "http://www.w3.org/2000/01/rdf-schema#label",
+        "definitionProperties" : [ "http://www.ebi.ac.uk/efo/definition" ],
+        "synonymProperties" : [ "http://www.ebi.ac.uk/efo/alternative_term" ],
+        "hierarchicalProperties" : [ "http://purl.obolibrary.org/obo/BFO_0000050" ],
+        "baseUris" : [ "http://www.orpha.net/ORDO/Orphanet_" ],
+        "hiddenProperties" : [ "http://www.ebi.ac.uk/efo/has_flag" ],
+        "internalMetadataProperties" : [ ],
+        "skos" : false
+      },
+      "_links" : {
+        "self" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/ordo"
+        },
+        "terms" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/ordo/terms"
+        },
+        "properties" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/ordo/properties"
+        },
+        "individuals" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/ordo/individuals"
+        }
+      }
+    }, {
+      "ontologyId" : "teddy",
+      "loaded" : null,
+      "updated" : "2016-01-19T11:34:57.354+0000",
+      "status" : "TOLOAD",
+      "message" : "No ontology loaded",
+      "version" : null,
+      "numberOfTerms" : 0,
+      "numberOfProperties" : 0,
+      "numberOfIndividuals" : 0,
+      "config" : {
+        "id" : "http://identifiers.org/teddy/",
+        "versionIri" : null,
+        "title" : "Terminology for Description of Dynamics",
+        "namespace" : "teddy",
+        "preferredPrefix" : "TEDDY",
+        "description" : "TEDDY is an ontology for dynamical behaviours, observable dynamical phenomena, and control elements of bio-models and biological systems in Systems and Synthetic Biology.",
+        "homepage" : null,
+        "version" : null,
+        "mailingList" : null,
+        "creators" : [ ],
+        "annotations" : { },
+        "fileLocation" : "http://www.biomodels.net/teddy/TEDDY",
+        "reasonerType" : "NONE",
+        "oboSlims" : false,
+        "labelProperty" : "http://www.w3.org/2000/01/rdf-schema#label",
+        "definitionProperties" : [ "http://www.w3.org/2004/02/skos/core#definition" ],
+        "synonymProperties" : [ "http://www.w3.org/2004/02/skos/core#altLabel" ],
+        "hierarchicalProperties" : [ "http://purl.obolibrary.org/obo/BFO_0000050" ],
+        "baseUris" : [ "http://identifiers.org/teddy/TEDDY_" ],
+        "hiddenProperties" : [ ],
+        "internalMetadataProperties" : [ ],
+        "skos" : false
+      },
+      "_links" : {
+        "self" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/teddy"
+        },
+        "terms" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/teddy/terms"
+        },
+        "properties" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/teddy/properties"
+        },
+        "individuals" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/teddy/individuals"
+        }
+      }
+    }, {
+      "ontologyId" : "cco",
+      "loaded" : null,
+      "updated" : "2016-01-19T11:34:57.359+0000",
+      "status" : "TOLOAD",
+      "message" : "No ontology loaded",
+      "version" : null,
+      "numberOfTerms" : 0,
+      "numberOfProperties" : 0,
+      "numberOfIndividuals" : 0,
+      "config" : {
+        "id" : "http://purl.obolibrary.org/obo/cco",
+        "versionIri" : null,
+        "title" : "Cell Cycle Ontology",
+        "namespace" : "cco",
+        "preferredPrefix" : "CCO",
+        "description" : "The Cell Cycle Ontology extends existing ontologies for cell cycle knowledge building a resource that integrates and manages knowledge about the cell cycle components and regulatory aspects.",
+        "homepage" : "http://www.semantic-systems-biology.org/apo",
+        "version" : null,
+        "mailingList" : "vladimir.n.mironov@gmail.com",
+        "creators" : [ ],
+        "annotations" : { },
+        "fileLocation" : "http://www.nt.ntnu.no/users/mironov/ontology/CCO/cco.obo",
+        "reasonerType" : "NONE",
+        "oboSlims" : true,
+        "labelProperty" : "http://www.w3.org/2000/01/rdf-schema#label",
+        "definitionProperties" : [ "http://purl.obolibrary.org/obo/IAO_0000115" ],
+        "synonymProperties" : [ "http://www.geneontology.org/formats/oboInOwl#hasExactSynonym" ],
+        "hierarchicalProperties" : [ "http://purl.obolibrary.org/obo/BFO_0000050" ],
+        "baseUris" : [ "http://purl.obolibrary.org/obo/CCO_" ],
+        "hiddenProperties" : [ ],
+        "internalMetadataProperties" : [ ],
+        "skos" : false
+      },
+      "_links" : {
+        "self" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/cco"
+        },
+        "terms" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/cco/terms"
+        },
+        "properties" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/cco/properties"
+        },
+        "individuals" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/cco/individuals"
+        }
+      }
+    }, {
+      "ontologyId" : "cmpo",
+      "loaded" : null,
+      "updated" : "2016-01-19T11:34:57.360+0000",
+      "status" : "TOLOAD",
+      "message" : "No ontology loaded",
+      "version" : null,
+      "numberOfTerms" : 0,
+      "numberOfProperties" : 0,
+      "numberOfIndividuals" : 0,
+      "config" : {
+        "id" : "http://www.ebi.ac.uk/cmpo",
+        "versionIri" : null,
+        "title" : "Cellular Microscopy Phenotype Ontology",
+        "namespace" : "cmpo",
+        "preferredPrefix" : "CMPO",
+        "description" : "CMPO is a species neutral ontology for describing general phenotypic observations relating to the whole cell, cellular components, cellular processes and cell populations.",
+        "homepage" : "http://www.ebi.ac.uk/cmpo",
+        "version" : null,
+        "mailingList" : "jupp@ebi.ac.uk",
+        "creators" : [ ],
+        "annotations" : { },
+        "fileLocation" : "http://www.ebi.ac.uk/cmpo/cmpo.owl",
+        "reasonerType" : "EL",
+        "oboSlims" : true,
+        "labelProperty" : "http://www.w3.org/2000/01/rdf-schema#label",
+        "definitionProperties" : [ "http://purl.obolibrary.org/obo/IAO_0000115" ],
+        "synonymProperties" : [ "http://www.geneontology.org/formats/oboInOwl#hasExactSynonym" ],
+        "hierarchicalProperties" : [ "http://purl.obolibrary.org/obo/BFO_0000050" ],
+        "baseUris" : [ "http://www.ebi.ac.uk/cmpo/CMPO_" ],
+        "hiddenProperties" : [ ],
+        "internalMetadataProperties" : [ ],
+        "skos" : false
+      },
+      "_links" : {
+        "self" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/cmpo"
+        },
+        "terms" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/cmpo/terms"
+        },
+        "properties" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/cmpo/properties"
+        },
+        "individuals" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/cmpo/individuals"
+        }
+      }
+    }, {
+      "ontologyId" : "eol",
+      "loaded" : null,
+      "updated" : "2016-01-19T11:34:57.367+0000",
+      "status" : "TOLOAD",
+      "message" : "No ontology loaded",
+      "version" : null,
+      "numberOfTerms" : 0,
+      "numberOfProperties" : 0,
+      "numberOfIndividuals" : 0,
+      "config" : {
+        "id" : "file:/C:/Lea/ontologies/environnement/leo.obo",
+        "versionIri" : null,
+        "title" : "Environment Ontology for Livestock",
+        "namespace" : "eol",
+        "preferredPrefix" : "EOL",
+        "description" : "L'ontologie EOL décrit les conditions d'environnement des élevages d'animaux domestiques. Elle décrit plus particulièrement les modalités de l'alimentation, de l'environnement, de la structure des élevages et des systèmes d'élevage",
+        "homepage" : "http://www.atol-ontology.com",
+        "version" : null,
+        "mailingList" : "pylebail@rennes.inra.fr",
+        "creators" : [ ],
+        "annotations" : { },
+        "fileLocation" : "http://www.atol-ontology.com/ontology/20082013/eol_v4__collaboration.owl",
+        "reasonerType" : "NONE",
+        "oboSlims" : false,
+        "labelProperty" : "http://www.w3.org/2000/01/rdf-schema#label",
+        "definitionProperties" : [ "file:/C:/Lea/ontologies/environnement/leo.obo#definition" ],
+        "synonymProperties" : [ "file:/C:/Lea/ontologies/environnement/leo.obo#synonymExact" ],
+        "hierarchicalProperties" : [ "http://purl.obolibrary.org/obo/BFO_0000050" ],
+        "baseUris" : [ "http://purl.org/obo/owlEOL_" ],
+        "hiddenProperties" : [ ],
+        "internalMetadataProperties" : [ ],
+        "skos" : false
+      },
+      "_links" : {
+        "self" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/eol"
+        },
+        "terms" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/eol/terms"
+        },
+        "properties" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/eol/properties"
+        },
+        "individuals" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/eol/individuals"
+        }
+      }
+    }, {
+      "ontologyId" : "lbo",
+      "loaded" : null,
+      "updated" : "2016-01-19T11:34:57.369+0000",
+      "status" : "TOLOAD",
+      "message" : "No ontology loaded",
+      "version" : null,
+      "numberOfTerms" : 0,
+      "numberOfProperties" : 0,
+      "numberOfIndividuals" : 0,
+      "config" : {
+        "id" : "file:/C:/Lea/ontologies/environnement/leo.obo",
+        "versionIri" : null,
+        "title" : "Livestock Breed Ontology",
+        "namespace" : "lbo",
+        "preferredPrefix" : "LBO",
+        "description" : "A vocabulary for cattle, chicken, horse, pig, and sheep breeds.",
+        "homepage" : "http://bioportal.bioontology.org/ontologies/LBO",
+        "version" : null,
+        "mailingList" : "jreecy@iastate.edu",
+        "creators" : [ ],
+        "annotations" : { },
+        "fileLocation" : "http://data.bioontology.org/ontologies/LBO/submissions/2/download?apikey=0911d614-1dd4-41c0-afd4-9f3df0fc70be",
+        "reasonerType" : "NONE",
+        "oboSlims" : false,
+        "labelProperty" : "http://www.w3.org/2000/01/rdf-schema#label",
+        "definitionProperties" : [ "file:/C:/Lea/ontologies/environnement/leo.obo#definition" ],
+        "synonymProperties" : [ "file:/C:/Lea/ontologies/environnement/leo.obo#synonymExact" ],
+        "hierarchicalProperties" : [ "http://purl.obolibrary.org/obo/BFO_0000050" ],
+        "baseUris" : [ "http://purl.org/obo/owlEOL_" ],
+        "hiddenProperties" : [ ],
+        "internalMetadataProperties" : [ ],
+        "skos" : false
+      },
+      "_links" : {
+        "self" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/lbo"
+        },
+        "terms" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/lbo/terms"
+        },
+        "properties" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/lbo/properties"
+        },
+        "individuals" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/lbo/individuals"
+        }
+      }
+    }, {
+      "ontologyId" : "ancestro",
+      "loaded" : "2016-01-25T19:16:17.027+0000",
+      "updated" : "2016-01-25T19:16:17.027+0000",
+      "status" : "LOADED",
+      "message" : "",
+      "version" : null,
+      "numberOfTerms" : 540,
+      "numberOfProperties" : 18,
+      "numberOfIndividuals" : 0,
+      "config" : {
+        "id" : "http://www.ebi.ac.uk/ancestro",
+        "versionIri" : null,
+        "title" : "Ancestry Ontology",
+        "namespace" : "ancestro",
+        "preferredPrefix" : "ancestro",
+        "description" : "The Ancestry Ontology (Ancestro) provides a systematic description of the ancestry concepts used in the NHGRI-EBI Catalog of published genome-wide association studies. It includes a list of countries, regions and major areas (essentially continents), as well as a fairly exhaustive list of country- or region-specific ancestral groups, uncategorised ancestral groups and population isolates.",
+        "homepage" : "https://github.com/EBISPOT/ancestro/",
+        "version" : "1.0",
+        "mailingList" : null,
+        "creators" : [ ],
+        "annotations" : {
+          "createdBy" : [ "Dani Welter" ],
+          "comment" : [ "Ancestry ontology for the NHGRI GWAS Catalog" ],
+          "label" : [ "Ancestry Ontology" ]
+        },
+        "fileLocation" : "https://raw.githubusercontent.com/EBISPOT/ancestro/master/ancestro.owl",
+        "reasonerType" : "OWL2",
+        "oboSlims" : false,
+        "labelProperty" : "http://www.w3.org/2000/01/rdf-schema#label",
+        "definitionProperties" : [ "http://purl.obolibrary.org/obo/IAO_0000115" ],
+        "synonymProperties" : [ "http://purl.obolibrary.org/obo/IAO_0000118" ],
+        "hierarchicalProperties" : [ "http://purl.obolibrary.org/obo/BFO_0000050" ],
+        "baseUris" : [ "http://www.ebi.ac.uk/ancestro/ancestro_" ],
+        "hiddenProperties" : [ ],
+        "internalMetadataProperties" : [ "http://www.w3.org/2002/07/owl#versionInfo" ],
+        "skos" : false
+      },
+      "_links" : {
+        "self" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/ancestro"
+        },
+        "terms" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/ancestro/terms"
+        },
+        "properties" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/ancestro/properties"
+        },
+        "individuals" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/ancestro/individuals"
+        }
+      }
+    }, {
+      "ontologyId" : "chebi",
+      "loaded" : "2016-05-03T09:12:49.604+0000",
+      "updated" : "2016-05-03T09:12:49.604+0000",
+      "status" : "LOADED",
+      "message" : "",
+      "version" : null,
+      "numberOfTerms" : 102424,
+      "numberOfProperties" : 35,
+      "numberOfIndividuals" : 0,
+      "config" : {
+        "id" : "http://purl.obolibrary.org/obo/chebi.owl",
+        "versionIri" : "http://purl.obolibrary.org/obo/chebi/139/chebi.owl",
+        "title" : "Chemical Entities of Biological Interest",
+        "namespace" : "chebi",
+        "preferredPrefix" : "CHEBI",
+        "description" : "A structured classification of molecular entities of biological interest focusing on 'small' chemical compounds.",
+        "homepage" : "http://www.ebi.ac.uk/chebi",
+        "version" : "03-05-2016",
+        "mailingList" : null,
+        "creators" : [ ],
+        "annotations" : {
+          "date" : [ "01:05:2016 03:50" ],
+          "saved-by" : [ "chebi" ],
+          "default-namespace" : [ "chebi_ontology" ],
+          "has_obo_format_version" : [ "1.2" ],
+          "comment" : [ "Author: ChEBI curation team", "developed by Michael Ashburner & Pankaj Jaiswal.", "ChEBI Release version 139", "For any queries contact chebi-help@ebi.ac.uk", "ChEBI subsumes and replaces the Chemical Ontology first" ]
+        },
+        "fileLocation" : "http://purl.obolibrary.org/obo/chebi.owl",
+        "reasonerType" : "EL",
+        "oboSlims" : true,
+        "labelProperty" : "http://www.w3.org/2000/01/rdf-schema#label",
+        "definitionProperties" : [ "http://purl.obolibrary.org/obo/IAO_0000115" ],
+        "synonymProperties" : [ "http://www.geneontology.org/formats/oboInOwl#hasExactSynonym" ],
+        "hierarchicalProperties" : [ "http://purl.obolibrary.org/obo/BFO_0000050" ],
+        "baseUris" : [ "http://purl.obolibrary.org/obo/CHEBI_" ],
+        "hiddenProperties" : [ ],
+        "internalMetadataProperties" : [ ],
+        "skos" : false
+      },
+      "_links" : {
+        "self" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/chebi"
+        },
+        "terms" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/chebi/terms"
+        },
+        "properties" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/chebi/properties"
+        },
+        "individuals" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/chebi/individuals"
+        }
+      }
+    }, {
+      "ontologyId" : "doid",
+      "loaded" : "2016-06-08T12:21:56.308+0000",
+      "updated" : "2016-06-08T12:21:56.308+0000",
+      "status" : "LOADED",
+      "message" : "",
+      "version" : null,
+      "numberOfTerms" : 9247,
+      "numberOfProperties" : 46,
+      "numberOfIndividuals" : 0,
+      "config" : {
+        "id" : "http://purl.obolibrary.org/obo/doid.owl",
+        "versionIri" : "http://purl.obolibrary.org/obo/doid/releases/2016-03-25/doid.owl",
+        "title" : "Human Disease Ontology",
+        "namespace" : "doid",
+        "preferredPrefix" : "DOID",
+        "description" : "An ontology for describing the classification of human diseases organized by etiology.",
+        "homepage" : "http://www.disease-ontology.org",
+        "version" : "2016-03-25",
+        "mailingList" : null,
+        "creators" : [ ],
+        "annotations" : {
+          "date" : [ "25:03:2016 16:27" ],
+          "saved-by" : [ "elvira" ],
+          "default-namespace" : [ "disease_ontology" ],
+          "has_obo_format_version" : [ "1.2" ],
+          "auto-generated-by" : [ "OBO-Edit 2.3.1" ],
+          "comment" : [ "This work is licensed under a Creative Commons Attribution 3.0 Unported License http://creativecommons.org/licenses/by/3.0/." ]
+        },
+        "fileLocation" : "http://purl.obolibrary.org/obo/doid.owl",
+        "reasonerType" : "EL",
+        "oboSlims" : true,
+        "labelProperty" : "http://www.w3.org/2000/01/rdf-schema#label",
+        "definitionProperties" : [ "http://purl.obolibrary.org/obo/IAO_0000115" ],
+        "synonymProperties" : [ "http://www.geneontology.org/formats/oboInOwl#hasExactSynonym" ],
+        "hierarchicalProperties" : [ "http://purl.obolibrary.org/obo/BFO_0000050" ],
+        "baseUris" : [ "http://purl.obolibrary.org/obo/DOID_" ],
+        "hiddenProperties" : [ ],
+        "internalMetadataProperties" : [ ],
+        "skos" : false
+      },
+      "_links" : {
+        "self" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/doid"
+        },
+        "terms" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/doid/terms"
+        },
+        "properties" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/doid/properties"
+        },
+        "individuals" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/doid/individuals"
+        }
+      }
+    }, {
+      "ontologyId" : "pato",
+      "loaded" : null,
+      "updated" : "2016-01-19T11:34:58.064+0000",
+      "status" : "TOLOAD",
+      "message" : "No ontology loaded",
+      "version" : null,
+      "numberOfTerms" : 0,
+      "numberOfProperties" : 0,
+      "numberOfIndividuals" : 0,
+      "config" : {
+        "id" : "http://purl.obolibrary.org/obo/pato.owl",
+        "versionIri" : null,
+        "title" : "Phenotypic quality",
+        "namespace" : "pato",
+        "preferredPrefix" : "PATO",
+        "description" : "An ontology of phenotypic qualities (properties, attributes or characteristics)",
+        "homepage" : "https://github.com/pato-ontology/pato/",
+        "version" : null,
+        "mailingList" : null,
+        "creators" : [ ],
+        "annotations" : { },
+        "fileLocation" : "http://purl.obolibrary.org/obo/pato.owl",
+        "reasonerType" : "EL",
+        "oboSlims" : true,
+        "labelProperty" : "http://www.w3.org/2000/01/rdf-schema#label",
+        "definitionProperties" : [ "http://purl.obolibrary.org/obo/IAO_0000115" ],
+        "synonymProperties" : [ "http://www.geneontology.org/formats/oboInOwl#hasExactSynonym" ],
+        "hierarchicalProperties" : [ "http://purl.obolibrary.org/obo/BFO_0000050" ],
+        "baseUris" : [ "http://purl.obolibrary.org/obo/PATO_" ],
+        "hiddenProperties" : [ ],
+        "internalMetadataProperties" : [ ],
+        "skos" : false
+      },
+      "_links" : {
+        "self" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/pato"
+        },
+        "terms" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/pato/terms"
+        },
+        "properties" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/pato/properties"
+        },
+        "individuals" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/pato/individuals"
+        }
+      }
+    }, {
+      "ontologyId" : "po",
+      "loaded" : null,
+      "updated" : "2016-01-19T11:34:58.066+0000",
+      "status" : "TOLOAD",
+      "message" : "No ontology loaded",
+      "version" : null,
+      "numberOfTerms" : 0,
+      "numberOfProperties" : 0,
+      "numberOfIndividuals" : 0,
+      "config" : {
+        "id" : "http://purl.obolibrary.org/obo/po.owl",
+        "versionIri" : null,
+        "title" : "Plant Ontology",
+        "namespace" : "po",
+        "preferredPrefix" : "PO",
+        "description" : "The Plant Ontology is a structured vocabulary and database resource that links plant anatomy, morphology and growth and development to plant genomics data.",
+        "homepage" : "http://www.plantontology.org",
+        "version" : null,
+        "mailingList" : null,
+        "creators" : [ ],
+        "annotations" : { },
+        "fileLocation" : "http://purl.obolibrary.org/obo/po.owl",
+        "reasonerType" : "EL",
+        "oboSlims" : true,
+        "labelProperty" : "http://www.w3.org/2000/01/rdf-schema#label",
+        "definitionProperties" : [ "http://purl.obolibrary.org/obo/IAO_0000115" ],
+        "synonymProperties" : [ "http://www.geneontology.org/formats/oboInOwl#hasExactSynonym" ],
+        "hierarchicalProperties" : [ "http://purl.obolibrary.org/obo/BFO_0000050" ],
+        "baseUris" : [ "http://purl.obolibrary.org/obo/PO_" ],
+        "hiddenProperties" : [ ],
+        "internalMetadataProperties" : [ ],
+        "skos" : false
+      },
+      "_links" : {
+        "self" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/po"
+        },
+        "terms" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/po/terms"
+        },
+        "properties" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/po/properties"
+        },
+        "individuals" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/po/individuals"
+        }
+      }
+    }, {
+      "ontologyId" : "flu",
+      "loaded" : null,
+      "updated" : "2016-01-19T11:34:58.138+0000",
+      "status" : "TOLOAD",
+      "message" : "No ontology loaded",
+      "version" : null,
+      "numberOfTerms" : 0,
+      "numberOfProperties" : 0,
+      "numberOfIndividuals" : 0,
+      "config" : {
+        "id" : "http://purl.obolibrary.org/obo/flu.owl",
+        "versionIri" : null,
+        "title" : "Influenza Ontology",
+        "namespace" : "flu",
+        "preferredPrefix" : "FLU",
+        "description" : null,
+        "homepage" : "http://purl.obolibrary.org/obo/flu/",
+        "version" : null,
+        "mailingList" : null,
+        "creators" : [ ],
+        "annotations" : { },
+        "fileLocation" : "http://purl.obolibrary.org/obo/flu.owl",
+        "reasonerType" : "EL",
+        "oboSlims" : true,
+        "labelProperty" : "http://www.w3.org/2000/01/rdf-schema#label",
+        "definitionProperties" : [ "http://purl.obolibrary.org/obo/IAO_0000115" ],
+        "synonymProperties" : [ "http://www.geneontology.org/formats/oboInOwl#hasExactSynonym" ],
+        "hierarchicalProperties" : [ "http://purl.obolibrary.org/obo/BFO_0000050" ],
+        "baseUris" : [ "http://purl.obolibrary.org/obo/FLU_" ],
+        "hiddenProperties" : [ ],
+        "internalMetadataProperties" : [ ],
+        "skos" : false
+      },
+      "_links" : {
+        "self" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/flu"
+        },
+        "terms" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/flu/terms"
+        },
+        "properties" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/flu/properties"
+        },
+        "individuals" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/flu/individuals"
+        }
+      }
+    }, {
+      "ontologyId" : "rexo",
+      "loaded" : "2016-06-07T13:47:47.136+0000",
+      "updated" : "2016-06-07T13:47:47.136+0000",
+      "status" : "LOADED",
+      "message" : "",
+      "version" : null,
+      "numberOfTerms" : 158239,
+      "numberOfProperties" : 19,
+      "numberOfIndividuals" : 0,
+      "config" : {
+        "id" : "http://www.bio.ntnu.no/ontology/ReXO/rexo.owl",
+        "versionIri" : null,
+        "title" : "Regulation of Gene Expression Ontology",
+        "namespace" : "rexo",
+        "preferredPrefix" : "ReXO",
+        "description" : "Regulation of Gene Expression",
+        "homepage" : "http://www.semantic-systems-biology.org/apo",
+        "version" : "07-06-2016",
+        "mailingList" : "vladimir.n.mironov@gmail.com",
+        "creators" : [ ],
+        "annotations" : { },
+        "fileLocation" : "http://www.bio.ntnu.no/ontology/ReXO/rexo.owl",
+        "reasonerType" : "NONE",
+        "oboSlims" : true,
+        "labelProperty" : "http://www.w3.org/2004/02/skos/core#prefLabel",
+        "definitionProperties" : [ "http://www.w3.org/2004/02/skos/core#definition" ],
+        "synonymProperties" : [ "http://www.geneontology.org/formats/oboInOwl#hasExactSynonym" ],
+        "hierarchicalProperties" : [ "http://purl.obolibrary.org/obo/BFO_0000050" ],
+        "baseUris" : [ "http://purl.obolibrary.org/obo/ReXO_" ],
+        "hiddenProperties" : [ ],
+        "internalMetadataProperties" : [ ],
+        "skos" : false
+      },
+      "_links" : {
+        "self" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/rexo"
+        },
+        "terms" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/rexo/terms"
+        },
+        "properties" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/rexo/properties"
+        },
+        "individuals" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/rexo/individuals"
+        }
+      }
+    }, {
+      "ontologyId" : "pr",
+      "loaded" : null,
+      "updated" : "2016-01-19T11:34:58.068+0000",
+      "status" : "TOLOAD",
+      "message" : "No ontology loaded",
+      "version" : null,
+      "numberOfTerms" : 0,
+      "numberOfProperties" : 0,
+      "numberOfIndividuals" : 0,
+      "config" : {
+        "id" : "http://purl.obolibrary.org/obo/pr.owl",
+        "versionIri" : null,
+        "title" : "PRotein Ontology (PRO)",
+        "namespace" : "pr",
+        "preferredPrefix" : "PR",
+        "description" : "An ontological representation of protein-related entities",
+        "homepage" : "http://proconsortium.org",
+        "version" : null,
+        "mailingList" : null,
+        "creators" : [ ],
+        "annotations" : { },
+        "fileLocation" : "http://purl.obolibrary.org/obo/pr.owl",
+        "reasonerType" : "EL",
+        "oboSlims" : true,
+        "labelProperty" : "http://www.w3.org/2000/01/rdf-schema#label",
+        "definitionProperties" : [ "http://purl.obolibrary.org/obo/IAO_0000115" ],
+        "synonymProperties" : [ "http://www.geneontology.org/formats/oboInOwl#hasExactSynonym" ],
+        "hierarchicalProperties" : [ "http://purl.obolibrary.org/obo/BFO_0000050" ],
+        "baseUris" : [ "http://purl.obolibrary.org/obo/PR_" ],
+        "hiddenProperties" : [ ],
+        "internalMetadataProperties" : [ ],
+        "skos" : false
+      },
+      "_links" : {
+        "self" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/pr"
+        },
+        "terms" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/pr/terms"
+        },
+        "properties" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/pr/properties"
+        },
+        "individuals" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/pr/individuals"
+        }
+      }
+    }, {
+      "ontologyId" : "xao",
+      "loaded" : null,
+      "updated" : "2016-01-19T11:34:58.069+0000",
+      "status" : "TOLOAD",
+      "message" : "No ontology loaded",
+      "version" : null,
+      "numberOfTerms" : 0,
+      "numberOfProperties" : 0,
+      "numberOfIndividuals" : 0,
+      "config" : {
+        "id" : "http://purl.obolibrary.org/obo/xao.owl",
+        "versionIri" : null,
+        "title" : "Xenopus anatomy and development",
+        "namespace" : "xao",
+        "preferredPrefix" : "XAO",
+        "description" : "Anatomy and development of the African clawed frog (<i>Xenopus laevis</i>).",
+        "homepage" : "http://www.xenbase.org/anatomy/xao.do?method=display",
+        "version" : null,
+        "mailingList" : null,
+        "creators" : [ ],
+        "annotations" : { },
+        "fileLocation" : "http://purl.obolibrary.org/obo/xao.owl",
+        "reasonerType" : "EL",
+        "oboSlims" : true,
+        "labelProperty" : "http://www.w3.org/2000/01/rdf-schema#label",
+        "definitionProperties" : [ "http://purl.obolibrary.org/obo/IAO_0000115" ],
+        "synonymProperties" : [ "http://www.geneontology.org/formats/oboInOwl#hasExactSynonym" ],
+        "hierarchicalProperties" : [ "http://purl.obolibrary.org/obo/BFO_0000050" ],
+        "baseUris" : [ "http://purl.obolibrary.org/obo/XAO_" ],
+        "hiddenProperties" : [ ],
+        "internalMetadataProperties" : [ ],
+        "skos" : false
+      },
+      "_links" : {
+        "self" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/xao"
+        },
+        "terms" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/xao/terms"
+        },
+        "properties" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/xao/properties"
+        },
+        "individuals" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/xao/individuals"
+        }
+      }
+    }, {
+      "ontologyId" : "zfa",
+      "loaded" : null,
+      "updated" : "2016-01-19T11:34:58.071+0000",
+      "status" : "TOLOAD",
+      "message" : "No ontology loaded",
+      "version" : null,
+      "numberOfTerms" : 0,
+      "numberOfProperties" : 0,
+      "numberOfIndividuals" : 0,
+      "config" : {
+        "id" : "http://purl.obolibrary.org/obo/zfa.owl",
+        "versionIri" : null,
+        "title" : "Zebrafish anatomy and development",
+        "namespace" : "zfa",
+        "preferredPrefix" : "ZFA",
+        "description" : "A structured controlled vocabulary of the anatomy and development of the Zebrafish",
+        "homepage" : "http://zfin.org/zf_info/anatomy/dict/sum.html",
+        "version" : null,
+        "mailingList" : null,
+        "creators" : [ ],
+        "annotations" : { },
+        "fileLocation" : "http://purl.obolibrary.org/obo/zfa.owl",
+        "reasonerType" : "EL",
+        "oboSlims" : true,
+        "labelProperty" : "http://www.w3.org/2000/01/rdf-schema#label",
+        "definitionProperties" : [ "http://purl.obolibrary.org/obo/IAO_0000115" ],
+        "synonymProperties" : [ "http://www.geneontology.org/formats/oboInOwl#hasExactSynonym" ],
+        "hierarchicalProperties" : [ "http://purl.obolibrary.org/obo/BFO_0000050" ],
+        "baseUris" : [ "http://purl.obolibrary.org/obo/ZFA_" ],
+        "hiddenProperties" : [ ],
+        "internalMetadataProperties" : [ ],
+        "skos" : false
+      },
+      "_links" : {
+        "self" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/zfa"
+        },
+        "terms" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/zfa/terms"
+        },
+        "properties" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/zfa/properties"
+        },
+        "individuals" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/zfa/individuals"
+        }
+      }
+    }, {
+      "ontologyId" : "aeo",
+      "loaded" : null,
+      "updated" : "2016-01-19T11:34:58.073+0000",
+      "status" : "TOLOAD",
+      "message" : "No ontology loaded",
+      "version" : null,
+      "numberOfTerms" : 0,
+      "numberOfProperties" : 0,
+      "numberOfIndividuals" : 0,
+      "config" : {
+        "id" : "http://purl.obolibrary.org/obo/aeo.owl",
+        "versionIri" : null,
+        "title" : "Anatomical Entity Ontology",
+        "namespace" : "aeo",
+        "preferredPrefix" : "AEO",
+        "description" : "AEO is an ontology of anatomical structures that expands CARO, the Common Anatomy Reference Ontology",
+        "homepage" : "https://github.com/obophenotype/human-developmental-anatomy-ontology/",
+        "version" : null,
+        "mailingList" : null,
+        "creators" : [ ],
+        "annotations" : { },
+        "fileLocation" : "http://purl.obolibrary.org/obo/aeo.owl",
+        "reasonerType" : "EL",
+        "oboSlims" : true,
+        "labelProperty" : "http://www.w3.org/2000/01/rdf-schema#label",
+        "definitionProperties" : [ "http://purl.obolibrary.org/obo/IAO_0000115" ],
+        "synonymProperties" : [ "http://www.geneontology.org/formats/oboInOwl#hasExactSynonym" ],
+        "hierarchicalProperties" : [ "http://purl.obolibrary.org/obo/BFO_0000050" ],
+        "baseUris" : [ "http://purl.obolibrary.org/obo/AEO_" ],
+        "hiddenProperties" : [ ],
+        "internalMetadataProperties" : [ ],
+        "skos" : false
+      },
+      "_links" : {
+        "self" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/aeo"
+        },
+        "terms" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/aeo/terms"
+        },
+        "properties" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/aeo/properties"
+        },
+        "individuals" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/aeo/individuals"
+        }
+      }
+    }, {
+      "ontologyId" : "aero",
+      "loaded" : "2016-05-27T09:51:11.982+0000",
+      "updated" : "2016-05-27T09:51:11.982+0000",
+      "status" : "LOADED",
+      "message" : "",
+      "version" : null,
+      "numberOfTerms" : 388,
+      "numberOfProperties" : 141,
+      "numberOfIndividuals" : 42,
+      "config" : {
+        "id" : "http://purl.obolibrary.org/obo/aero.owl",
+        "versionIri" : null,
+        "title" : "Adverse Event Reporting Ontology",
+        "namespace" : "aero",
+        "preferredPrefix" : "AERO",
+        "description" : "The Adverse Event Reporting Ontology (AERO) is an ontology aimed at supporting clinicians at the time of data entry, increasing quality and accuracy of reported adverse events",
+        "homepage" : "http://purl.obolibrary.org/obo/aero",
+        "version" : "27-05-2016",
+        "mailingList" : null,
+        "creators" : [ ],
+        "annotations" : {
+          "Contributor" : [ "Alan Ruttenberg", "Melanie Courtot" ],
+          "comment" : [ "The Adverse Event Reporting Ontology (AERO) is designed to facilitate the representation of adverse event reports and their evaluation in relation to clinical guidelines written by various authorities. We take a realist approach in which findings in reports are information artifacts and are related to instances or types that represent patient, symptoms, diseases, etc. We intend that use of this ontology will result in data that interoperates well with OBO Foundry ontologies as we directly use terms from OBO ontologies wherever appropriate.\n\nThe initial domain for this work are reports of adverse events following immunization (AEFIs). We represent the Brighton case definitions as our guidelines, show how findings can be assessed in terms of Brighton criteria and how diagnoses of adverse events with different levels of certainty can be obtained by use of the OWL reasoner." ]
+        },
+        "fileLocation" : "http://purl.obolibrary.org/obo/aero.owl",
+        "reasonerType" : "EL",
+        "oboSlims" : true,
+        "labelProperty" : "http://www.w3.org/2000/01/rdf-schema#label",
+        "definitionProperties" : [ "http://purl.obolibrary.org/obo/IAO_0000115" ],
+        "synonymProperties" : [ "http://www.geneontology.org/formats/oboInOwl#hasExactSynonym" ],
+        "hierarchicalProperties" : [ "http://purl.obolibrary.org/obo/BFO_0000050" ],
+        "baseUris" : [ "http://purl.obolibrary.org/obo/AERO_" ],
+        "hiddenProperties" : [ ],
+        "internalMetadataProperties" : [ ],
+        "skos" : false
+      },
+      "_links" : {
+        "self" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/aero"
+        },
+        "terms" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/aero/terms"
+        },
+        "properties" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/aero/properties"
+        },
+        "individuals" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/aero/individuals"
+        }
+      }
+    }, {
+      "ontologyId" : "apo",
+      "loaded" : null,
+      "updated" : "2016-01-19T11:34:58.076+0000",
+      "status" : "TOLOAD",
+      "message" : "No ontology loaded",
+      "version" : null,
+      "numberOfTerms" : 0,
+      "numberOfProperties" : 0,
+      "numberOfIndividuals" : 0,
+      "config" : {
+        "id" : "http://purl.obolibrary.org/obo/apo.owl",
+        "versionIri" : null,
+        "title" : "Ascomycete phenotype ontology",
+        "namespace" : "apo",
+        "preferredPrefix" : "APO",
+        "description" : "A structured controlled vocabulary for the phenotypes of Ascomycete fungi",
+        "homepage" : "http://www.yeastgenome.org/",
+        "version" : null,
+        "mailingList" : null,
+        "creators" : [ ],
+        "annotations" : { },
+        "fileLocation" : "http://purl.obolibrary.org/obo/apo.owl",
+        "reasonerType" : "EL",
+        "oboSlims" : true,
+        "labelProperty" : "http://www.w3.org/2000/01/rdf-schema#label",
+        "definitionProperties" : [ "http://purl.obolibrary.org/obo/IAO_0000115" ],
+        "synonymProperties" : [ "http://www.geneontology.org/formats/oboInOwl#hasExactSynonym" ],
+        "hierarchicalProperties" : [ "http://purl.obolibrary.org/obo/BFO_0000050" ],
+        "baseUris" : [ "http://purl.obolibrary.org/obo/APO_" ],
+        "hiddenProperties" : [ ],
+        "internalMetadataProperties" : [ ],
+        "skos" : false
+      },
+      "_links" : {
+        "self" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/apo"
+        },
+        "terms" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/apo/terms"
+        },
+        "properties" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/apo/properties"
+        },
+        "individuals" : {
+          "href" : "http://www.ebi.ac.uk/api/ontologies/apo/individuals"
+        }
+      }
+    } ]
+  },
+  "_links" : {
+    "first" : {
+      "href" : "http://www.ebi.ac.uk/api/ontologies?page=0&size=20"
+    },
+    "self" : {
+      "href" : "http://www.ebi.ac.uk/api/ontologies"
+    },
+    "next" : {
+      "href" : "http://www.ebi.ac.uk/api/ontologies?page=1&size=20"
+    },
+    "last" : {
+      "href" : "http://www.ebi.ac.uk/api/ontologies?page=7&size=20"
+    }
+  },
+  "page" : {
+    "size" : 20,
+    "totalElements" : 149,
+    "totalPages" : 8,
+    "number" : 0
+  }
+}
+----
