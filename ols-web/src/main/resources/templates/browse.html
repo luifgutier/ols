@@ -26,16 +26,22 @@
 
 
     <!-- CSS: implied media=all -->
-    <!-- CSS concatenated and minified via ant build script-->
+     <!-- CSS concatenated and minified via ant build script
     <link rel="stylesheet" href="//www.ebi.ac.uk/web_guidelines/css/compliance/develop/boilerplate-style.css"/>
     <link rel="stylesheet" href="//www.ebi.ac.uk/web_guidelines/css/compliance/develop/ebi-global.css" type="text/css" media="screen"/>
     <link rel="stylesheet" href="//www.ebi.ac.uk/web_guidelines/css/compliance/develop/ebi-visual.css" type="text/css" media="screen"/>
     <link rel="stylesheet" href="//www.ebi.ac.uk/web_guidelines/css/compliance/develop/984-24-col-fluid.css" type="text/css" media="screen"/>
-
+    -->
+    <link rel="stylesheet" href="../static/ebi/css/boilerplate-style.css" th:href="@{ebi/css/boilerplate-style.css}" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="../static/ebi/css/ebi-global.css" th:href="@{ebi/css/ebi-global.css}" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="../static/ebi/css/ebi-visual.css" th:href="@{ebi/css/ebi-visual.css}" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="../static/ebi/css/ebi/984-24-col-fluid.css" th:href="@{ebi/css/984-24-col-fluid.css}" type="text/css" media="screen"/>-- you can replace this with [projectname]-colours.css. See http://frontier.ebi.ac.uk/web/style/colour for details of how to do this -->
+    
     <!-- you can replace this with [projectname]-colours.css. See http://frontier.ebi.ac.uk/web/style/colour for details of how to do this -->
     <!-- also inform ES so we can host your colour palette file -->
-    <link rel="stylesheet" href="//www.ebi.ac.uk/web_guidelines/css/compliance/develop/embl-petrol-colours.css" type="text/css" media="screen"/>
-
+     <!--<link rel="stylesheet" href="//www.ebi.ac.uk/web_guidelines/css/compliance/develop/embl-petrol-colours.css" type="text/css" media="screen"/>-->
+    <link rel="stylesheet" href="../static/ebi/css/embl-petrol-colours.css" th:href="@{ebi/css/embl-petrol-colours.css}" type="text/css" media="screen"/>
+    
     <link rel="stylesheet" href="../static/css/ols.css" th:href="@{css/ols.css}" type="text/css" media="screen"/>
     <link rel="stylesheet" href="../static/css/ols-colors.css" th:href="@{css/ols-colors.css}" type="text/css" media="screen"/>
 
@@ -46,7 +52,7 @@
     <link rel="stylesheet" href="//www.ebi.ac.uk/web_guidelines/css/compliance/mini/ebi-fluid-embl.css">
     -->
     <!-- Bootstrap table css -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.css"/>
+    <link rel="stylesheet" href="../static/ebi/css/bootstrap-table.min.css" th:href="@{ebi/css/bootstrap-table.min.css}"/>
 
     <style type="text/css">
         /* You have the option of setting a maximum width for your page, and making sure everything is centered */
@@ -68,13 +74,37 @@
     <!-- Full build -->
     <!-- <script src="//www.ebi.ac.uk/web_guidelines/js/libs/modernizr.minified.2.1.6.js"></script> -->
 
-    <!-- custom build (lacks most of the "advanced" HTML5 support -->
-    <script src="//www.ebi.ac.uk/web_guidelines/js/libs/modernizr.custom.49274.js"></script>
+    <!-- custom build (lacks most of the "advanced" HTML5 support 
+    <script src="//www.ebi.ac.uk/web_guidelines/js/libs/modernizr.custom.49274.js"></script>-->
+    
+    <script src="../static/ebi/js/modernizr.custom.49274.js" th:src="@{ebi/js/modernizr.custom.49274.js}"></script>
 
 </head>
 
 <body class="level2">
+<script>
+    function getBaseURL() {
+    var url = location.href;  // entire url including querystring - also: window.location.href;
+    var baseURL = url.substring(0, url.indexOf('/', 14));
 
+
+    if (baseURL.indexOf('http://localhost') != -1) {
+        // Base Url for localhost
+        var url = location.href;  // window.location.href;
+        var pathname = location.pathname;  // window.location.pathname;
+        var index1 = url.indexOf(pathname);
+        var index2 = url.indexOf("/", index1 + 1);
+        var baseLocalUrl = url.substr(0, index2);
+
+        return baseLocalUrl + "/";
+    }
+    else {
+        // Root Url for domain name
+        return baseURL + "/";
+    }
+
+}
+</script>
 <div id="skip-to">
     <ul>
         <li><a href="#content">Skip to main content</a></li>
@@ -91,7 +121,7 @@
         <div id="global-masthead" class="masthead grid_24">
 
             <!--This has to be one line and no newline characters-->
-            <a href="//www.ebi.ac.uk/" title="Go to the EMBL-EBI homepage"><img src="//www.ebi.ac.uk/web_guidelines/images/logos/EMBL-EBI/EMBL_EBI_Logo_white.png" alt="EMBL European Bioinformatics Institute"/></a>
+            <a href="//www.ebi.ac.uk/" title="Go to the EMBL-EBI homepage"><img src="../static/ebi/image/EMBL_EBI_Logo_white.png" th:src="@{ebi/image/EMBL_EBI_Logo_white.png}" alt="EMBL European Bioinformatics Institute"/></a>
 
             <nav>
                 <ul id="global-nav">
@@ -131,6 +161,7 @@
                     <li class="first"><a href="index">Home</a></li>
                     <li class="active"><a href="">Ontologies</a></li>
                     <li><a href="docs">Documentation</a></li>
+                    <li><a href="uploadfile">Upload Ontology</a></li>
                     <li class="last" ><a href="about">About</a></li>
                     <li class="functional last"><a href="contact" class="icon icon-generic" data-icon="C">Contact Us</a></li>
                 </ul>
@@ -165,7 +196,14 @@
                                 </div><!-- /input-group -->
                             </form>
                         </div>
-
+                        <div class="grid_22" id="mensajes" style="display:none">
+                            <div id="mensaje" >
+                                
+                            </div>
+                            <div id="estado" >
+                                
+                            </div>
+                        </div>
                         <div style="padding-left: 9px;">
 
                             <table data-toggle="table" data-search="false" data-locale="en-US" class="table table-striped table-hover ">
@@ -188,13 +226,16 @@
                                     </td>
                                     <td><span class="ontology-source" th:text="${{onto.getConfig().getPreferredPrefix()}}"></span></td>
                                     <td th:text="${{onto.getConfig().getDescription()}}">0</td>
-                                    <td th:text="${{onto.getLoaded()}}">0</td>
+                                    <td th:if="${{onto.getStatus() == T(uk.ac.ebi.spot.ols.model.Status).TOLOAD}}" th:text="Actualizando">0</td>
+                                    <td th:unless="${{onto.getStatus() == T(uk.ac.ebi.spot.ols.model.Status).TOLOAD}}" th:text="${{onto.getLoaded()}}">0</td>
                                     <td>
                                         <a th:unless="${{onto.getStatus() == T(uk.ac.ebi.spot.ols.model.Status).NOTLOADED}}" th:href="'search?ontology=' + ${onto.getConfig().getNamespace()}" href="search">Search</a><br/>
                                         <a th:unless="${{onto.getStatus() == T(uk.ac.ebi.spot.ols.model.Status).NOTLOADED}}" th:href="@{ontologies/__${onto.getConfig().getNamespace()}__/terms}">Terms</a><br/>
                                         <a th:unless="${{onto.getStatus() == T(uk.ac.ebi.spot.ols.model.Status).NOTLOADED}}" th:href="@{ontologies/__${onto.getConfig().getNamespace()}__/properties}">Properties</a><br/>
                                         <a th:unless="${{onto.getStatus() == T(uk.ac.ebi.spot.ols.model.Status).NOTLOADED}}" th:href="@{ontologies/__${onto.getConfig().getNamespace()}__/individuals}">Individuals</a><br/>
                                         <a th:unless="${{onto.getStatus() == T(uk.ac.ebi.spot.ols.model.Status).NOTLOADED}}" th:href="@{ontologies/__${onto.getConfig().getNamespace()}__/download}">Download</a><br/>
+                                        <a class="forceUpdate" th:unless="${{onto.getStatus() == T(uk.ac.ebi.spot.ols.model.Status).NOTLOADED}}" th:href="@{ontologies/__${onto.getConfig().getNamespace()}__/forceupdate}">Force Update</a><br/>
+                                        <a th:unless="${{onto.getStatus() == T(uk.ac.ebi.spot.ols.model.Status).NOTLOADED}}" th:href="@{ontologies/__${onto.getConfig().getNamespace()}__/delete}">Delete</a><br/>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -269,8 +310,8 @@
 
 <script type="text/javascript" src="../static/js/ols.js" th:src="@{js/ols.js}"></script>
 <script type="text/javascript" src="../static/js/ols-termselect2.js" th:src="@{js/ols-termselect2.js}"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/locale/bootstrap-table-en-US.min.js"></script>
+<script src="../static/ebi/js/bootstrap-table.min.js" th:src="@{ebi/js/bootstrap-table.min.js}"></script>
+<script src="../static/ebi/js/bootstrap-table-en-US.min.js" th:src="@{ebi/js/bootstrap-table-en-US.min.js}"></script>
 
 <!--<script>-->
 <!--$(document).ready(function() {-->
@@ -279,9 +320,12 @@
 <!--);-->
 <!--});-->
 <!--</script>-->
-
+<!--
 <script defer="defer" src="//www.ebi.ac.uk/web_guidelines/js/cookiebanner.js"></script>
 <script defer="defer" src="//www.ebi.ac.uk/web_guidelines/js/foot.js"></script>
+-->
+<script  src="../static/ebi/js/cookiebanner.js" th:src="@{ebi/js/cookiebanner.js}"></script>
+<script  src="../static/ebi/js/foot.js" th:src="@{ebi/js/foot.js}"></script>
 
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -291,6 +335,52 @@
 
     ga('create', 'UA-69391170-1', 'auto');
     ga('send', 'pageview');
+    
+    $(document).ready(function(){
+        $(".forceUpdate").click(function(e){
+            e.preventDefault();
+            var url = $(this).attr("href");
+            $.ajax({
+                url:url
+            }).done(function(data){
+                $("#mensajes").show();
+                if(data){
+                    $("#mensaje").addClass("alert alert-success");
+                    $("#mensaje").html("Exito al actualizar la ontologia, en estos momentos la ontologia esta siendo cargada al sistema, por favor espera un momento");
+                    $("#estado").addClass("alert alert-danger");
+                    $("#estado").html("La aplicacion esta fuera de servicio, por favor espera");
+                    $.ajax({
+                        url:"terminarAplicacion",
+                        dataType: 'json'
+                    }).done(function(){
+                        verificarDisponibilidad();
+                    });
+                }else{
+                    $("#mensaje").addClass("alert alert-danger");
+                    $("#mensaje").html("Lo sentimos, hubo un error al actualizar la ontologia");
+                    $("#estado").hide(); 
+                }
+            }).fail(function(){
+                $("#mensajes").show();
+                $("#mensaje").addClass("alert alert-danger");
+                $("#mensaje").html("Lo sentimos, hubo un error al actualizar la ontologia");
+                $("#estado").hide();    
+            });
+        });
+        
+        function verificarDisponibilidad(){
+            $.ajax({
+                url:"index"
+            }).done(function(){
+                $("#estado").html('La aplicación esta en funcionamiento nuevamente, gracias por esperar');
+                $("#estado").removeClass("alert-danger");
+                $("#estado").addClass('alert-success');
+            }).fail(function(){
+
+                verificarDisponibilidad();
+            });
+        }
+    });
 
 </script>
 </body>

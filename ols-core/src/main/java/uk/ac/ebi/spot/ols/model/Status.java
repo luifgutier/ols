@@ -14,6 +14,8 @@ public enum Status {
     TOLOAD,
     LOADED,
     LOADING,
-    DOWNLOADING, FAILED
+    DOWNLOADING,
+    FAILED,
+    ERASE,
 
 }

@@ -14,5 +14,6 @@ import uk.ac.ebi.spot.ols.model.OntologyDocument;
 public interface OntologyIndexingService {
 
     void indexOntologyDocument(OntologyDocument document) throws IndexingException;
+    void eraseONtologyDocument(OntologyDocument document) throws IndexingException;
 
 }

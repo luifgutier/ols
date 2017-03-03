@@ -1,5 +1,6 @@
 package uk.ac.ebi.spot.ols;
 
+import java.io.IOException;
 import org.apache.commons.cli.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +26,14 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import java.util.*;
 import java.util.concurrent.CountDownLatch;
+import org.neo4j.unsafe.batchinsert.BatchInserterIndex;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
+import uk.ac.ebi.spot.ols.config.OntologyResourceConfig;
+import uk.ac.ebi.spot.ols.config.YamlBasedLoadingService;
+import uk.ac.ebi.spot.ols.config.YamlConfigParser;
+import uk.ac.ebi.spot.ols.exception.ConfigParsingException;
+import uk.ac.ebi.spot.ols.loader.BatchNeo4JIndexer;
 
 /**
  * @author Simon Jupp
@@ -57,7 +66,8 @@ public class LoadingApplication implements CommandLineRunner {
 
     @Autowired
     MailService mailService;
-
+    
+    
     private static String [] ontologies = {};
 
     private static String email;
@@ -67,7 +77,10 @@ public class LoadingApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
+        
+        
+        revisarOntologiasRegistradas();
+        
         int parseArgs = parseArguments(args);
 
         System.setProperty("entityExpansionLimit", "10000000");
@@ -102,7 +115,9 @@ public class LoadingApplication implements CommandLineRunner {
             // get all documents and check for updates
             allDocuments = ontologyRepositoryService.getAllDocuments();
         }
-
+        
+        
+        
         CountDownLatch latch = new CountDownLatch(allDocuments.size());
         FileUpdatingService service = new FileUpdatingService(ontologyRepositoryService, executor, latch);
         service.checkForUpdates(allDocuments, fileUpdater, ontologies.length>0);
@@ -168,7 +183,23 @@ public class LoadingApplication implements CommandLineRunner {
         }
         System.exit(0);
     }
+    
+    
+    public void revisarOntologiasRegistradas() throws IOException, ConfigParsingException{
+        List<OntologyDocument> allDocuments = ontologyRepositoryService.getAllDocumentsByStatus(Status.ERASE);
+       
+        for (OntologyDocument document : allDocuments) {
+            
+            ontologyIndexingService.eraseONtologyDocument(document);
 
+            ontologyRepositoryService.delete(document);
+            getLog().info("Borrando ontologia: "+document.getOntologyId());
+            
+        }
+        
+        //System.exit(0);
+        
+    }
 
     private static int parseArguments(String[] args) {
 

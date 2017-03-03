@@ -155,4 +155,60 @@ public class MongoOntologyIndexingService implements OntologyIndexingService{
             ontologyRepositoryService.update(document);
         }
     }
+
+    @Override
+    public void eraseONtologyDocument(OntologyDocument document) throws IndexingException {
+        OntologyLoader loader = null;
+        Collection<IRI> classes;
+        Collection<IRI> properties;
+        Collection<IRI> individuals;
+        String message = "";
+        Status status = Status.FAILED;
+
+        try {
+            loader = OntologyLoaderFactory.getLoader(document.getConfig(), databaseService);
+            if (document.getLocalPath() != null) {
+                // if updated get local path, and set location to local file
+                loader.setOntologyResource(new FileSystemResource(document.getLocalPath()));
+            }
+            classes = loader.getAllClasses();
+            properties = loader.getAllObjectPropertyIRIs();
+            individuals = loader.getAllIndividualIRIs();
+
+
+            // this means that file parsed, but had nothing in it, which is a bit suspect - indexing should fail until we undertand why/how this could happen
+            if (classes.size() + properties.size() + individuals.size()== 0) {
+                getLog().error("A suspiciously small or zero classes or properties found in latest version of " + loader.getOntologyName() + ": Won't index!");
+                message = "Failed to load - last update had no classes or properties so was rejected";
+                
+                ontologyRepositoryService.update(document);
+                // don't try to index, just return
+                throw new IndexingException("Empty ontology found", new RuntimeException());
+            }
+
+        } catch (Exception e) {
+            message = e.getMessage() + ":" + e.getCause().getMessage();
+            getLog().error(message);
+            
+            
+            return;
+        }
+
+        try {
+
+            for (OntologyIndexer indexer : indexers) {
+                getLog().info("Borrando ontologia ");
+                indexer.dropIndex(loader);
+                
+            }
+
+            
+        } catch (Exception e) {
+            getLog().error("Error ereasing " + document.getOntologyId(), e.getMessage());
+            status = Status.FAILED;
+            message = e.getMessage();
+            throw e;
+        }
+    }
+        
 }

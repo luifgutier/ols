@@ -25,8 +25,10 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -43,6 +45,7 @@ public class YamlLoader implements CommandLineRunner {
 
     @Autowired
     private OntologyRepositoryService ontologyRepositoryService;
+    
 
     @Value("${ols.ontology.config:ols-config.yaml}")
     public String yamlPath;
@@ -74,6 +77,7 @@ public class YamlLoader implements CommandLineRunner {
             Resource olsResource = resourceLoader.getResource(configPath);
             if (olsResource.exists()) {
                 YamlConfigParser yamlConfigParser = new YamlConfigParser(olsResource);
+                revisarOntologiasRegistradas(yamlConfigParser);
                 updateDocument(yamlConfigParser);
             }
             else {
@@ -81,7 +85,30 @@ public class YamlLoader implements CommandLineRunner {
             }
         }
     }
-
+    
+    public void revisarOntologiasRegistradas(YamlConfigParser yamlConfigParser) throws IOException, ConfigParsingException{
+        List<OntologyDocument> allDocuments = ontologyRepositoryService.getAllDocuments();
+        List<String> ontologiasListadas = new ArrayList<>();
+        for (YamlBasedLoadingService loadingService : yamlConfigParser.getDocumentLoadingServices()) {
+            OntologyResourceConfig ontologyResourceConfig = loadingService.getConfiguration();
+            ontologiasListadas.add(ontologyResourceConfig.getNamespace());
+        }
+        
+        
+        for (OntologyDocument document : allDocuments) {
+            if(!ontologiasListadas.contains(document.getOntologyId())){
+                //ontologyIndexingService.eraseONtologyDocument(document);
+                
+                document.setStatus(Status.ERASE);
+                ontologyRepositoryService.update(document);
+                getLog().info("Estatus borrar ontologia: "+document.getOntologyId());
+            }
+        }
+        
+               
+        
+    }
+    
     public void updateDocument(YamlConfigParser yamlConfigParser) throws IOException {
 
         for (YamlBasedLoadingService loadingService : yamlConfigParser.getDocumentLoadingServices()) {

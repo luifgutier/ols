@@ -560,7 +560,7 @@ public class BatchNeo4JIndexer implements OntologyIndexer {
 
         deleteNodes(loader.getOntologyName());
 //        deleteRoots(loader.getOntologyName());
-
+    
         db.shutdown();
 
 
@@ -673,4 +673,14 @@ public class BatchNeo4JIndexer implements OntologyIndexer {
         }
         return false;
     }
+
+    public BatchInserterIndex getEntities() {
+        return entities;
+    }
+
+    
+
+    
+    
+   
 }
