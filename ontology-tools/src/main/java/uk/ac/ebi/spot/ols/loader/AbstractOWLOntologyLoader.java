@@ -95,6 +95,10 @@ AbstractOWLOntologyLoader extends Initializable implements OntologyLoader {
     private Collection<IRI> localTerms = new HashSet<>();
     private Collection<IRI> rootTerms = new HashSet<>();
 
+    // NUEVO
+    private Map<IRI, Collection<IRI>> directObjectProperties = new HashMap<>();
+    private Map<IRI, Map<IRI,Collection<IRI>>> individualObjectProperties = new HashMap<>();
+    
     private Map<IRI, Collection<IRI>> directParentTerms = new HashMap<>();
     private Map<IRI, Collection<IRI>> allParentTerms = new HashMap<>();
     private Map<IRI, Collection<IRI>> directChildTerms = new HashMap<>();
@@ -104,6 +108,12 @@ AbstractOWLOntologyLoader extends Initializable implements OntologyLoader {
     private Map<IRI, Map<IRI,Collection<IRI>>> relatedParentTerms = new HashMap<>();
     private Map<IRI, Collection<IRI>> relatedChildTerms = new HashMap<>();
     private Map<IRI, Map<IRI,Collection<IRI>>> allRelatedTerms = new HashMap<>();
+    
+    // nuevo para incluir los objectProperties de los individuals
+    private Map<IRI, Map<IRI,Collection<IRI>>> relatedObjectProperties = new HashMap<>();
+    private Map<IRI, Map<IRI,Collection<IRI>>> relatedParentObjectProperties = new HashMap<>();
+    private Map<IRI, Collection<IRI>> relatedChildObjectProperties = new HashMap<>();
+    private Map<IRI, Map<IRI,Collection<IRI>>> allRelatedObjectProperties = new HashMap<>();
 
     private Map<IRI, Collection<OBODefinitionCitation>> oboDefinitionCitations = new HashMap<>();
     private Map<IRI, Collection<OBOXref>> oboXrefs = new HashMap<>();
@@ -454,10 +464,61 @@ AbstractOWLOntologyLoader extends Initializable implements OntologyLoader {
                         if (expression instanceof  OWLClass) {
                             instanceTypes.add( ((OWLClass) expression).getIRI());
                         }
+                        // si queremos agregar los types de restricciones de cuantificadores
+                        //
+                        // Ejemplo: https://www.w3.org/TR/owl2-syntax/#Existential_Quantification
+                        //
+                        // ObjectSomeValuesFrom( OPE CE ) consists of an object property expression 
+                        // OPE and a class expression CE. En nuestras ontologias esta propiedad se utiliza
+                        // para determinar posibles restricciones de clases de textos que no son encadenados
+                        //
+                        // Individual -> esta some NO subconjunto de ENCADENADO
+                        /*
+                        if (expression instanceof  OWLObjectSomeValuesFrom) {
+                        	instanceTypes.add( ((OWLObjectSomeValuesFrom) expression).getIRI());
+                        }
+                        */
                     }
                     if (!instanceTypes.isEmpty()) {
                         addDirectParents(individual.getIRI(), instanceTypes);
                     }
+                                        
+                    //////////////
+                    // 
+                    // NUEVO
+                    //
+                    // add object properies of Individual
+                                        
+                    Set<IRI> instanceObjPropertyTypes = new HashSet<IRI>();
+                    // tengo que sacar los OWLObjectPropertyExpression de la clausura de esta ontologia
+                    // itero las ontologias para verificar si tienen la definición del objectProperty
+                    for(OWLOntology onto : getManager().getOntologies()){
+                    	// miro si la ontologia tiene object Properties
+                    	for (OWLObjectPropertyExpression expression : individual.getObjectPropertyValues(onto).keySet()) {
+                        	if (expression instanceof  OWLObjectProperty) {
+                        		// saco el IRI del object property
+                        		OWLObjectProperty objProp = (OWLObjectProperty) expression;
+                        		IRI objPropertyIRI = objProp.getIRI();
+                        		// TODO: esto es realmente necesario? Qué pasaría si un individuo
+                        		// tuviera mas de una vez el mismo objectproperty
+                        		if( !instanceObjPropertyTypes.contains(objPropertyIRI) ){
+                        			instanceObjPropertyTypes.add( objPropertyIRI );
+                        			try {
+                            			indexObjectPropertyRelations(individual, objProp);
+                            		}catch (OWLOntologyCreationException e) {
+                                        getLog().error("unable to index objectProperty - "+expression+" for individual - "+individual);
+                                    }
+                        		}                    		
+                            }
+                        }                        
+                    }
+                    
+                    
+                    if (!instanceObjPropertyTypes.isEmpty()) {                    	
+                        addDirectObjectProperties(individual.getIRI(), instanceObjPropertyTypes);
+                    }
+                    
+                    
                 }
 
                 @Override
@@ -624,6 +685,48 @@ AbstractOWLOntologyLoader extends Initializable implements OntologyLoader {
         // todo find transitive closure of related terms
     }
 
+    
+    // NUEVO Metodo para indexar los object properties de un individuo
+    protected void indexObjectPropertyRelations(OWLNamedIndividual individual, OWLObjectProperty objectProperty) throws OWLOntologyCreationException {
+
+        OWLReasoner reasoner = getOWLReasoner(ontology);
+        
+        // seguramente tengo que traer todas las object properties de la clausura ontologica
+        //containsObjectPropertyInSignature(IRI owlObjectPropertyIRI, boolean includeImportsClosure)
+
+        Set<OWLNamedIndividual> objectPropertyValues = reasoner.getObjectPropertyValues(individual, objectProperty).getFlattened();
+        
+        // get all object properties
+        
+        //TODO: se comenta pues no se ve la necesidad de tenerlo
+        /*
+        Set<IRI> apo = removeExcludedIRI(
+        		objectPropertyValues.parallelStream()
+                        .map(OWLNamedObject::getIRI)
+                        .collect(Collectors.toSet()),
+                owlVocabulary);
+        if (apo.size() >0) addIndividualObjectProperties(individual.getIRI(), apo);
+        */
+        
+        
+        // find direct related terms
+        Map<IRI, Collection<IRI>> relatedObjectPropertyTerms = new HashMap<>();
+
+        for (OWLNamedIndividual expression : objectPropertyValues) {
+			IRI relatedObjPropertyTerm = expression.getIRI();
+			if (!relatedObjectPropertyTerms.containsKey(objectProperty.getIRI())) {
+				relatedObjectPropertyTerms.put(objectProperty.getIRI(), new HashSet<>());
+			}
+			relatedObjectPropertyTerms.get(objectProperty.getIRI()).add(relatedObjPropertyTerm);			
+		}
+		
+        if (!relatedObjectPropertyTerms.isEmpty()) {
+            addIndividualObjectProperityRelatedTerms(individual.getIRI(), relatedObjectPropertyTerms );
+        }
+                     
+    }
+
+    
     /**
      * Bit of a hack to try and detect non standard 'part of' predicates
      * @param propertyIri
@@ -964,6 +1067,33 @@ AbstractOWLOntologyLoader extends Initializable implements OntologyLoader {
     protected abstract OWLReasoner getOWLReasoner(OWLOntology ontology) throws OWLOntologyCreationException;
     protected abstract void discardReasoner(OWLOntology ontology) throws OWLOntologyCreationException;
 
+    // nuevos getters para los objectproperties de un individuo
+    protected void addDirectObjectProperties(IRI individualIRI, Set<IRI> objProperties) {
+        this.directObjectProperties.put(individualIRI, objProperties);
+    }
+    
+    protected void addIndividualObjectProperityRelatedTerms(IRI termIRI, Map<IRI, Collection<IRI>> relatedObjPropertiesTerms) {
+        // tengo que validar si ya tengo el key, para no sobre escribir
+    	if(!this.individualObjectProperties.containsKey(termIRI)){
+    		this.individualObjectProperties.put(termIRI, relatedObjPropertiesTerms);
+    	}else{
+    		// tengo que agregar los nuevos valores del mapa al ya existente
+    		Map<IRI, Collection<IRI>> valueMap = this.individualObjectProperties.get(termIRI);
+    		// tengo que mirar si ya tengo el key del mapa
+    		for (IRI keyIRI :  relatedObjPropertiesTerms.keySet() ) {
+    			if(!valueMap.containsKey(keyIRI)){
+    				// adiciono
+    				valueMap.put(keyIRI, relatedObjPropertiesTerms.get(keyIRI));
+    			}else{
+    				// agrego
+    				// saco el value de valueMap y adiciono la nueva coleccion
+    				valueMap.get(keyIRI).addAll(relatedObjPropertiesTerms.get(keyIRI));				
+    			}    						
+    		}    		
+    	}
+    	
+    }
+    
     // bunch of getters and setters
 
     protected void addDirectParents(IRI termIRI, Set<IRI> parents) {
@@ -1025,6 +1155,14 @@ AbstractOWLOntologyLoader extends Initializable implements OntologyLoader {
     public Map<IRI, Collection<IRI>> getRelatedTerms(IRI entityIRI) {
         if (relatedTerms.containsKey(entityIRI)) {
             return relatedTerms.get(entityIRI);
+        }
+        return Collections.emptyMap();
+    }
+    
+    // Nuevo para los properties de un individuo
+    public Map<IRI, Collection<IRI>> getIndividualObjectPropertiesRelatedTerms(IRI entityIRI) {
+        if (individualObjectProperties.containsKey(entityIRI)) {
+            return individualObjectProperties.get(entityIRI);
         }
         return Collections.emptyMap();
     }
@@ -1114,6 +1252,11 @@ AbstractOWLOntologyLoader extends Initializable implements OntologyLoader {
     @Override
     public Map<IRI, Collection<IRI>> getDirectParentTerms() {
         return directParentTerms;
+    }
+    
+    // Nuevo método para sacar los nombre de los objproperties de un individuo
+    public Map<IRI, Collection<IRI>> getDirectObjectProperties() {
+        return directObjectProperties;
     }
 
     @Override

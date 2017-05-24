@@ -101,7 +101,7 @@ public class SolrIndexer implements OntologyIndexer {
             }
 
             for (IRI classTerm : loader.getAllIndividualIRIs()) {
-                TermDocumentBuilder builder = extractFeatures(loader, classTerm);
+            	TermDocumentBuilder builder = extractFeatures(loader, classTerm);
                 builder.setType(TermType.INDIVIDUAL.toString().toLowerCase());
                 documents.add(builder.createTermDocument());
 
@@ -292,7 +292,6 @@ public class SolrIndexer implements OntologyIndexer {
             builder.setHierarchicalAncestorUris(allHierarchicalParents);
         }
 
-
         if (!loader.getRelatedTerms(termIRI).isEmpty())    {
             Map<String, Collection<String>> relatedTerms = new HashMap<>();
 
@@ -308,6 +307,25 @@ public class SolrIndexer implements OntologyIndexer {
             builder.setRelatedTerms(relatedTerms);
         }
 
+        //TODO para indexar las propiedades
+        if (!loader.getIndividualObjectPropertiesRelatedTerms(termIRI).isEmpty())    {
+            Map<String, Collection<String>> objPropRelatedTerms = new HashMap<>();
+
+            for (IRI relation : loader.getIndividualObjectPropertiesRelatedTerms(termIRI).keySet()) {
+            	// TODO: validar si el TermLabel también tiene el nombre de los objectpropeties
+                String labelName = loader.getTermLabels().get(relation) + "_related";
+                if (!objPropRelatedTerms.containsKey(labelName)) {
+                	objPropRelatedTerms.put(labelName, new HashSet<>());
+                }
+                objPropRelatedTerms.get(labelName).addAll(
+                        loader.getIndividualObjectPropertiesRelatedTerms(termIRI).get(relation).stream().map(IRI::toString).collect(Collectors.toSet()));
+
+            }
+            // TODO: validar si es necesario tener otro método separado
+            builder.setRelatedTerms(objPropRelatedTerms);
+        }
+
+        
         if (loader.getEquivalentTerms().containsKey(termIRI))    {
             builder.setEquivalentUris(loader.getEquivalentTerms().get(termIRI).stream().map(IRI::toString).collect(Collectors.toSet()));
         }
@@ -325,7 +343,7 @@ public class SolrIndexer implements OntologyIndexer {
 
         return builder;
     }
-
+    
     private String generateAnnotationId(String uri) {
         return DigestUtils.md5DigestAsHex(uri.getBytes());
     }

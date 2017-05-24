@@ -197,6 +197,15 @@ public interface OntologyLoader {
      * @return the relationship IRI and the set of related terms
      */
     Map<IRI, Collection<IRI>> getRelatedTerms(IRI entityIRI);
+    
+    
+    /**
+     * Returns related terms based on object properties. Only direct relations are
+     * included (i.e. no nested class expressions)
+     *
+     * @return the relationship IRI and the set of related terms
+     */    
+    Map<IRI, Collection<IRI>> getIndividualObjectPropertiesRelatedTerms(IRI entityIRI);
 
     /**
      * Returns all related terms that can be considered parents. Any relations that are considered hierarchical in nature (e.g. part-of, develops-from etc..). Excludes supeclass/is-a parents

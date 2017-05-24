@@ -1,0 +1,75 @@
+"@context":
+
+
+ontologies:
+
+## EDAM
+  - id: edam
+    preferredPrefix: EDAM
+    title: EDAM bioinformatics ontology
+    uri: http://edamontology.org
+    description: EDAM is a simple ontology of well established, familiar concepts that are prevalent within bioinformatics, including types of data and data identifiers, data formats, operations and topics. EDAM provides a set of terms with synonyms and definitions - organised into an intuitive hierarchy for convenient use.
+    homepage: http://edamontology.org
+    mailing_list: edam@elixir-dk.org
+    definition_property:
+      - http://www.geneontology.org/formats/oboInOwl#hasDefinition
+    synonym_property:
+      - http://www.geneontology.org/formats/oboInOwl#hasExactSynonym
+    base_uri:
+      - http://edamontology.org/data_
+      - http://edamontology.org/identifier_
+      - http://edamontology.org/topic_
+      - http://edamontology.org/format_
+    oboSlims: false
+    ontology_purl: http://edamontology.org/EDAM.owl
+
+## RETOMUSIC
+  - id: retomusic
+    preferredPrefix: RETOMUSIC
+    title: RetoMusic
+    uri: http://www.contactomovil.com.co/ontologias/musica_zonadetrabajo
+    description: "Reto Music"
+    reasoner: OWL2
+    oboSlims: false
+    hierarchical_property:
+      - http://www.contactomovil.com.co/ontologias/musica_contenidosyrelaciones#essobre
+      - http://www.contactomovil.com.co/ontologias/musica_contenidosyrelaciones#tienerelacion
+    ontology_purl: http://www.contactomovil.com.co/ontologias/musica_zonadetrabajo.owl
+
+## VISASALUDABLE
+  - id: vida
+    preferredPrefix: VIDA
+    title: vida saludable
+    uri: http://www.ebi.ac.uk/efo
+    description: "Test Ontology"
+    reasoner: OWL2
+    oboSlims: false
+    ontology_purl : http://www.contactomovil.com.co/ontologias/vidasaludable_zonadetrabajo.owl
+
+## eNanoMapper
+
+  - id: enm
+    preferredPrefix: ENM
+    title: eNanoMapper Ontology
+    uri: http://purl.enanomapper.org/onto/enanomapper.owl
+    description: "The eNanoMapper project (www.enanomapper.net) is creating a pan-European computational infrastructure for toxicological data management for ENMs, based on semantic web standards and ontologies. > This ontology is an application ontology targeting the full domain of nanomaterial safety assessment. It re-uses several other ontologies including the NPO, CHEMINF, ChEBI, and ENVO. "
+    homepage: http://www.enanomapper.net/
+    mailing_list: https://github.com/enanomapper/ontologies
+    definition_property:
+      - http://www.ebi.ac.uk/efo/definition
+      - http://purl.obolibrary.org/obo/IAO_0000115
+      - http://purl.bioontology.org/ontology/npo#definition
+      - http://purl.obolibrary.org/obo#Definition
+      - http://purl.org/dc/elements/1.1/description
+    synonym_property:
+      - http://www.ebi.ac.uk/efo/alternative_term
+      - http://purl.obolibrary.org/obo/IAO_0000118
+    hierarchical_property:
+      - http://www.bioassayontology.org/bao#BAO_0090002
+      - http://purl.bioontology.org/ontology/npo#part_of
+    base_uri:
+      - http://purl.enanomapper.org/onto/ENM_
+    oboSlims: false
+    ontology_purl : http://purl.enanomapper.net/onto/enanomapper.owl
+
+                              

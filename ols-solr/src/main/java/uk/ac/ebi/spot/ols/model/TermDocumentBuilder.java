@@ -164,13 +164,17 @@ public class TermDocumentBuilder {
         }
         return this;
     }
-
+    
+    // TODO: se agrega para incluir las relaciones de obj properties
+    // por ahora se utilizará el mismo método
     public TermDocumentBuilder setRelatedTerms(Map<String, Collection<String>> relatedTerms) {
         for (String key : relatedTerms.keySet()) {
             this.relatedTerms.put(key, new ArrayList<>(relatedTerms.get(key)));
         }
         return this;
     }
+    
+    
 
     public TermDocument createTermDocument() {
         return new TermDocument(

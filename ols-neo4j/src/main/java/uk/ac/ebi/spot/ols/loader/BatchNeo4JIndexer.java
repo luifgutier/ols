@@ -385,6 +385,28 @@ public class BatchNeo4JIndexer implements OntologyIndexer {
                 Long defaultType = getOrCreateNode(inserter, nodeMap,loader, IRI.create("http://www.w3.org/2002/07/owl#Thing"),  nodeLabel,nodeOntologyLabel,  _nodeLabel, rootLabel);
                 inserter.createRelationship( node, defaultType, typeOf, rdfTypeProperties);
             }
+            
+            
+            // TODO: validar si con el mismo getRelatedTerms se pueden tener las relaciones
+            // de individuals object properties
+            //Map<IRI, Collection<IRI>> relatedterms = loader.getRelatedTerms(individualIri);
+            Map<IRI, Collection<IRI>> relatedterms = loader.getIndividualObjectPropertiesRelatedTerms(individualIri);
+            
+
+            for (IRI relation : relatedterms.keySet()) {
+                Map<String, Object> relatedProperties = new HashMap<>();
+                relatedProperties.put("uri", relation.toString());
+                relatedProperties.put("label", loader.getTermLabels().get(relation));
+                relatedProperties.put("ontology_name", loader.getOntologyName());
+                relatedProperties.put("__type__", "Related");
+
+                for (IRI relatedTerm : relatedterms.get(relation)) {
+                    Long relatedNode =  getOrCreateNode(inserter, nodeMap,loader, relatedTerm, nodeLabel,nodeOntologyLabel, _nodeLabel);
+                    // create local relationship
+                    inserter.createRelationship( node, relatedNode, related, relatedProperties);                    
+                }
+
+            }
         }
     }
 
@@ -423,8 +445,11 @@ public class BatchNeo4JIndexer implements OntologyIndexer {
 
 
             // add related nodes
+            
+            // TODO: validar si con el mismo getRelatedTerms se pueden tener las relaciones
+            // de individuals object properties
             Map<IRI, Collection<IRI>> relatedterms = loader.getRelatedTerms(classIri);
-
+            
 
             for (IRI relation : relatedterms.keySet()) {
                 Map<String, Object> relatedProperties = new HashMap<>();
