@@ -81,6 +81,11 @@ public class BatchNeo4JIndexer implements OntologyIndexer {
 
     private static int BATCH_SIZE = 1000000;
     private static int DELETE_SIZE = 100000;
+    
+    
+    // TODO: eliminar
+    private IRI SHAKIRA = IRI.create("http://www.contactomovil.com.co/ontologias/musica_temas#Shakira");
+
 
     @Autowired
     OlsNeo4jConfiguration neo4jConfiguration;
@@ -366,6 +371,10 @@ public class BatchNeo4JIndexer implements OntologyIndexer {
         getLog().debug("Creating Neo4j index for " + loader.getAllIndividualIRIs().size() + " individuals");
 
         for (IRI individualIri : loader.getAllIndividualIRIs()) {
+        	
+        	if(individualIri.equals(SHAKIRA) ){
+        		System.out.println("Shakira no es una clase");
+        	}
 
             Long node = getOrCreateNode(inserter, nodeMap,loader, individualIri, instanceLabel, _instanceLabel,nodeOntologyLabel);
             Long mergedNode = getOrCreateMergedNode(inserter, mergedNodeMap, loader, individualIri, mergedClassLabel);
@@ -416,6 +425,10 @@ public class BatchNeo4JIndexer implements OntologyIndexer {
 //        int counter = 0;
 
         for (IRI classIri : loader.getAllClasses()) {
+        	
+        	if(classIri.equals(SHAKIRA) ){
+        		System.out.println("Shakira no es una clase");
+        	}
 
             Long node = getOrCreateNode(inserter, nodeMap,loader, classIri, nodeLabel,nodeOntologyLabel,  _nodeLabel);
 

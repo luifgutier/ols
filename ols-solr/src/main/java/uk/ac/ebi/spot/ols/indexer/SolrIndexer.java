@@ -27,6 +27,9 @@ public class SolrIndexer implements OntologyIndexer {
 
     private Logger log = LoggerFactory.getLogger(getClass());
     private int batchSize = 1000;
+    
+    // TODO: eliminar
+    private IRI SHAKIRA = IRI.create("http://www.contactomovil.com.co/ontologias/musica_temas#Shakira");
 
     public Logger getLog() {
         return log;
@@ -63,6 +66,12 @@ public class SolrIndexer implements OntologyIndexer {
             List<SuggestDocument> suggestDocuments = new ArrayList<>();
 
             for (IRI classTerm : loader.getAllClasses()) {
+            	
+            	// temporal para validar que el IRI de Shakira no sea una clase
+            	
+            	if(classTerm.equals(SHAKIRA) ){
+            		System.out.println("Shakira no es una clase");
+            	}
 
                 TermDocumentBuilder builder = extractFeatures(loader, classTerm);
                 builder.setType(TermType.CLASS.toString().toLowerCase());
@@ -101,6 +110,11 @@ public class SolrIndexer implements OntologyIndexer {
             }
 
             for (IRI classTerm : loader.getAllIndividualIRIs()) {
+            	
+            	if(classTerm.equals(SHAKIRA) ){
+            		System.out.println("Shakira no es una clase");
+            	}
+            	
             	TermDocumentBuilder builder = extractFeatures(loader, classTerm);
                 builder.setType(TermType.INDIVIDUAL.toString().toLowerCase());
                 documents.add(builder.createTermDocument());

@@ -48,6 +48,11 @@ AbstractOWLOntologyLoader extends Initializable implements OntologyLoader {
 
     private static final Pattern oboIdFragmentPattern = Pattern.compile("(([A-Za-z1-9_]*)_(\\d+))");
 
+ // TODO: eliminar
+    private IRI SHAKIRA = IRI.create("http://www.contactomovil.com.co/ontologias/musica_temas#Shakira");
+
+    
+    
     private IRI ontologyIRI;
     private IRI ontologyVersionIRI;
     private String ontologyName;
@@ -432,6 +437,12 @@ AbstractOWLOntologyLoader extends Initializable implements OntologyLoader {
                 @Override
                 public void visit(OWLClass cls) {
                     try {
+                    	
+                    	if(cls.getIRI().equals(SHAKIRA) ){
+                    		System.out.println("Shakira no es una clase");
+                    	}
+                    	
+                    	
                         if (!cls.getIRI().toString().contains(Namespaces.OWL.toString())) {
                             classes.add(cls.getIRI());
                             indexSubclassRelations(cls);
@@ -457,28 +468,51 @@ AbstractOWLOntologyLoader extends Initializable implements OntologyLoader {
 
                 @Override
                 public void visit(OWLNamedIndividual individual) {
+                	
+                	
+                	if(individual.getIRI().equals(SHAKIRA) ){
+                		System.out.println("Shakira no es una clase");
+                		Set<OWLClassExpression> types = individual.getTypes(ontology);
+                		System.out.println("shakiras types: "+types.size());
+                	}
+                	
                     individuals.add(individual.getIRI());
                     // add types as parents
                     Set<IRI> instanceTypes = new HashSet<IRI>();
-                    for (OWLClassExpression expression : individual.getTypes(ontology)) {
-                        if (expression instanceof  OWLClass) {
-                            instanceTypes.add( ((OWLClass) expression).getIRI());
-                        }
-                        // si queremos agregar los types de restricciones de cuantificadores
-                        //
-                        // Ejemplo: https://www.w3.org/TR/owl2-syntax/#Existential_Quantification
-                        //
-                        // ObjectSomeValuesFrom( OPE CE ) consists of an object property expression 
-                        // OPE and a class expression CE. En nuestras ontologias esta propiedad se utiliza
-                        // para determinar posibles restricciones de clases de textos que no son encadenados
-                        //
-                        // Individual -> esta some NO subconjunto de ENCADENADO
-                        /*
-                        if (expression instanceof  OWLObjectSomeValuesFrom) {
-                        	instanceTypes.add( ((OWLObjectSomeValuesFrom) expression).getIRI());
-                        }
-                        */
-                    }
+                    
+                    // tengo que sacar los OWLObjectPropertyExpression de la clausura de esta ontologia
+                    // itero las ontologias para verificar si tienen la definición del objectProperty
+					for (OWLOntology onto : getManager().getOntologies()) {
+						// miro si la ontologia tiene object Properties
+
+						for (OWLClassExpression expression : individual.getTypes(onto)) {
+							if (expression instanceof OWLClass) {
+								instanceTypes.add(((OWLClass) expression).getIRI());
+							}
+							// si queremos agregar los types de restricciones de
+							// cuantificadores
+							//
+							// Ejemplo:
+							// https://www.w3.org/TR/owl2-syntax/#Existential_Quantification
+							//
+							// ObjectSomeValuesFrom( OPE CE ) consists of an
+							// object property expression
+							// OPE and a class expression CE. En nuestras
+							// ontologias esta propiedad se utiliza
+							// para determinar posibles restricciones de clases
+							// de textos que no son encadenados
+							//
+							// Individual -> esta some NO subconjunto de
+							// ENCADENADO
+							/*
+							 * if (expression instanceof
+							 * OWLObjectSomeValuesFrom) { instanceTypes.add(
+							 * ((OWLObjectSomeValuesFrom) expression).getIRI());
+							 * }
+							 */
+						}
+					} 
+                    
                     if (!instanceTypes.isEmpty()) {
                         addDirectParents(individual.getIRI(), instanceTypes);
                     }
