@@ -85,6 +85,7 @@ public class BatchNeo4JIndexer implements OntologyIndexer {
     
     // TODO: eliminar
     private IRI SHAKIRA = IRI.create("http://www.contactomovil.com.co/ontologias/musica_temas#Shakira");
+    private IRI IRI2 = IRI.create("http://www.contactomovil.com.co/ontologias/musica_contenidosyrelaciones#01Sh");
 
 
     @Autowired
@@ -96,7 +97,14 @@ public class BatchNeo4JIndexer implements OntologyIndexer {
 
     private Long getOrCreateNode(BatchInserter inserter, Map<String, Long> nodeMap, OntologyLoader loader, IRI classIri, Label ... nodeLabel) {
 
+    	// TODO: algún nodo anterior pudo haber creado la clase de una relación antes
         if (!nodeMap.containsKey(classIri.toString())) {
+        	
+        	// validar quién está creando la clase SHAKIRA
+        	if(classIri.equals(SHAKIRA)  ){
+        		System.out.println("alguien creo la clase Shakira ");
+        	}
+        	
             Map<String, Object> properties = new HashMap<>();
             properties.put("olsId", loader.getOntologyName().toLowerCase() + ":" + classIri.toString());
             properties.put("iri", classIri.toString());
@@ -372,11 +380,14 @@ public class BatchNeo4JIndexer implements OntologyIndexer {
 
         for (IRI individualIri : loader.getAllIndividualIRIs()) {
         	
-        	if(individualIri.equals(SHAKIRA) ){
+        	if(individualIri.equals(SHAKIRA) || individualIri.equals(IRI2) ){
         		System.out.println("Shakira no es una clase");
         	}
 
-            Long node = getOrCreateNode(inserter, nodeMap,loader, individualIri, instanceLabel, _instanceLabel,nodeOntologyLabel);
+        	// clase
+        	//Long node = getOrCreateNode(inserter, nodeMap,loader, classIri, nodeLabel,nodeOntologyLabel,  _nodeLabel);
+        	// individuo
+            Long node = getOrCreateNode(inserter, nodeMap,loader, individualIri, instanceLabel, _instanceLabel , nodeOntologyLabel);
             Long mergedNode = getOrCreateMergedNode(inserter, mergedNodeMap, loader, individualIri, mergedClassLabel);
 
             // add refers link
@@ -410,7 +421,12 @@ public class BatchNeo4JIndexer implements OntologyIndexer {
                 relatedProperties.put("__type__", "Related");
 
                 for (IRI relatedTerm : relatedterms.get(relation)) {
-                    Long relatedNode =  getOrCreateNode(inserter, nodeMap,loader, relatedTerm, nodeLabel,nodeOntologyLabel, _nodeLabel);
+                	// TODO: los nodos relacionados se están creando como clases
+                	// ejemplo shakira
+                	// una relación solo es con otra instancia
+                	//
+                	// creacion individuo
+                	Long relatedNode =  getOrCreateNode(inserter, nodeMap,loader, relatedTerm,   instanceLabel, _instanceLabel , nodeOntologyLabel );
                     // create local relationship
                     inserter.createRelationship( node, relatedNode, related, relatedProperties);                    
                 }
@@ -535,6 +551,15 @@ public class BatchNeo4JIndexer implements OntologyIndexer {
             // index properties
             indexProperties(inserter, loader, propertyNodeMap, mergedNodeMap);
             // index individuals
+            
+            //TODO: eliminar
+            // valido si Shakira se creo como una clase
+            if(classNodeMap.containsKey(SHAKIRA.toString())){
+            	System.out.println("Shakira ya fue indexado como una clase - neo4j");
+            	Long id = classNodeMap.get(SHAKIRA.toString());
+            	System.out.println("neo4j -id: "+id);
+            }
+            
             indexIndividuals(inserter, loader, individualNodeMap, mergedNodeMap, classNodeMap);
 
             createSchemaIndexes(inserter);
